@@ -7,7 +7,7 @@ A pipeline for the analysis of STRT-N RNA-sequencing outputs from NextSeq.
 https://github.com/gyazgeldi/STRTN.git
 ```
 ## Dependencies
-For `STRTN.sh` ([The main pipeline with visualization]())
+For `STRTN.sh` ([The main pipeline with visualization](https://github.com/gyazgeldi/STRTN/blob/master/Visualization-in-UCSC-README.md))
 - [Picard](https://broadinstitute.github.io/picard/)
 - [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml)
 - [SAMtools](http://samtools.sourceforge.net/)
