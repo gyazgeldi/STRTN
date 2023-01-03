@@ -75,7 +75,7 @@ For general users:
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRT2-CSC.sh -o STRT2_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -e gamze.yezgeldi@helsinki.fi -n STRT2-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
+sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 
 ## Parameters
