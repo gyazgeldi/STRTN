@@ -1,33 +1,44 @@
-# STRT2-NextSeq analysis pipeline
+# STRTN-NextSeq analysis pipeline
 
-A pipeline for the analysis of STRT2 RNA-sequencing outputs from NextSeq.   
+A pipeline for the analysis of STRT-N RNA-sequencing outputs from NextSeq.   
 
 ## Install
 ```
-git clone https://github.com/my0916/STRT2.git
+https://github.com/gyazgeldi/STRTN.git
 ```
 ## Dependencies
-For `STRT2.sh` (the main pipeline)
+For `STRTN.sh` ([The main pipeline with visualization]())
 - [Picard](https://broadinstitute.github.io/picard/)
 - [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml)
 - [SAMtools](http://samtools.sourceforge.net/)
 - [bedtools](https://bedtools.readthedocs.io/en/latest/)
 - [Subread](http://subread.sourceforge.net/)
+- [Seqtk](https://github.com/lh3/seqtk)
+- [UCSC-bedGraphToBigWig](https://github.com/bioconda/bioconda-recipes/tree/master/recipes/ucsc-bedgraphtobigwig)
 
-For `STRT-TFE.sh` ([TFE-based analysis](https://github.com/my0916/STRT2/blob/master/TFE-README.md))
-- [StringTie](https://ccb.jhu.edu/software/stringtie/)
+For `STRTN-Seurat.sh` ([The visualization of results using Seurat package]())
+- [stringr](https://stringr.tidyverse.org/)
+- [dplyr](https://dplyr.tidyverse.org/)
+- [ggplot2](https://ggplot2.tidyverse.org/)
+- [cowplot](https://www.rdocumentation.org/packages/cowplot/versions/1.1.1)
+- [ggbeeswarm](https://github.com/eclarke/ggbeeswarm)
+- [forcats](https://forcats.tidyverse.org/)
+- [Seurat](https://satijalab.org/seurat/)
 
 For `fastq-fastQC.sh` 
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 - [MultiQC](https://multiqc.info/)
 
-The conda environment is provided as `condaEnv.yml`. The environment can be created with the followings:
+For `STRTN-TFE.sh` ([TFE-based analysis](https://github.com/my0916/STRT2/blob/master/TFE-README.md))
+- [StringTie](https://ccb.jhu.edu/software/stringtie/)
+
+The conda environment is provided as `STRTN-env.yml`. The environment can be created with the followings:
 ```
-conda env create -f condaEnv.yml
-conda activate STRT2_env
+conda env create -f STRTN-env.yml
+conda activate STRTN-env
 ```
 
-For [UPPMAX](https://www.uppmax.uu.se/), these software are available through the `module` command in the scripts (`STRT2-UPPMAX.sh`, `STRT2-TFE-UPPMAX.sh`, and `fastq-fastqc-uppmax.sh`).
+For [CSC](https://www.csc.fi/), these software are available through the `module` command in the scripts (`STRTN-CSC.sh`, `STRTN-Seurat.sh`, `STRTN-UCSC-Allas.sh`, `STRTN-TFE-CSC.sh`, and `fastq-fastqc-CSC.sh` as well as `STRTN-Indexes-Dictionary-CSC.sh`).
 
 ## Requirements
 - Illumina BaseCalls files (.bcl). The number of lanes is determined based on the number of directories in the basecalls directory. Here is an example of 4 lanes: 
@@ -38,7 +49,7 @@ For [UPPMAX](https://www.uppmax.uu.se/), these software are available through th
   └── L004
 ```
 - HISAT2 index built with a reference genome, (ribosomal DNA), and ERCC spike-ins 
-  - See also [How to build HISAT2 index](#How-to-build-HISAT2-index).
+  - See also [How to build HISAT2 index](https://github.com/gyazgeldi/STRTN/edit/master/README.md#how-to-build-hisat2-index-in-csc).
   - The HISAT2 index directory should include the followings:
 ```
     ├── [basename].1.ht2
@@ -55,16 +66,16 @@ For [UPPMAX](https://www.uppmax.uu.se/), these software are available through th
 - Source files (in `src` directory)
   - `barcode.txt` : Barcode sequence with barcode name (1–48). __Please modify if you used different (number of) barcodes.__
   - `ERCC.bed` : 5'-end 50 nt region of ERCC spike-ins ([SRM2374](https://www-s.nist.gov/srmors/view_detail.cfm?srm=2374)) for annotation and quality check.
+  - `Example-BarcodesStages` : Sample explanation for data reduction and visualization using violin plots.
 
 ## Example usage
+For general users:
 ```
-./STRT2.sh -o STRT2LIB -g canFam3 -a ens -b /path/to/Data/Intensities/BaseCalls/ \
--i /path/to/index/canFam3_reference -c HUDDINGE -r ABCDEFG123
+./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
-For UPPMAX:
+For CSC users:
 ```
-sbatch -A snic2017-7-317 -p core -n 8 -t 24:00:00 ./STRT2-UPPMAX.sh -o STRT2LIB -g canFam3 -a ens \
--b /path/to/Data/Intensities/BaseCalls/ -i /path/to/index/canFam3_reference -c HUDDINGE -r ABCDEFG123 
+sbatch -A project_2005262 ./STRT2-CSC.sh -o STRT2_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -e gamze.yezgeldi@helsinki.fi -n STRT2-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 
 ## Parameters
@@ -72,32 +83,39 @@ sbatch -A snic2017-7-317 -p core -n 8 -t 24:00:00 ./STRT2-UPPMAX.sh -o STRT2LIB 
 
    | Name | Description |
    | :--- | :--- |
-   | `-g, --genome` | Reference genome. Choose from `hg19`/`hg38`/`mm9`/`mm10`/`canFam3`. |
+   | `-g, --genome` | Reference genome. Choose one hg19/hg38/mm9/mm10/mm39/canFam3/canFam6/bosTau9. |
    | `-b, --basecalls` | /PATH/to/the Illumina basecalls directory.|
    | `-i, --index` | /PATH/to/the directory and basename of the HISAT2 index for the reference genome. |
+   | `-w, --working` | /PATH/to/the working directory. | 
+   | `-p, --picardhome` | /PATH/to/the picard.jar. | 
 
 - __Optional__
 
    | Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Default value|Description|
    | :--- | :--- | :--- |
    | `-o, --out` | OUTPUT | Output file name.|
-   | `-a, --annotation` | ref | Gene annotation for QC and counting. <br> Choose from `ref`(RefSeq)/`ens`(Ensembl)/`kg`(UCSC KnownGenes), or directly input the Gencode annotation file name (eg. `wgEncodeGencodeBasicV28lift37`) for Gencode. <br>Note that some annotations are unavailable in some cases. Please find the details below.
+   | `-a, --annotation` | ref | Gene annotation for QC and counting. <br> Choose from `ref`(RefSeq)/`ens`(Ensembl)/`kg`(UCSC KnownGenes), or directly input the Gencode annotation file name (eg. `wgEncodeGencodeBasicVM30`) for Gencode. <br>Note that some annotations are unavailable in some cases. Please find the details below.
    | `-c, --center ` | CENTER | The name of the sequencing center that produced the reads.<br>Required for the the Picard IlluminaBasecallsToSam program.|
    | `-r, --run` | RUNBARCODE | The barcode of the run. Prefixed to read names.<br>Required for the the Picard IlluminaBasecallsToSam program.|
    | `-s, --structure` | 8M3S74T6B | Read structure.<br>Required for the the Picard IlluminaBasecallsToSam program.<br>Details are described [here](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.4.0/picard_illumina_IlluminaBasecallsToSam.php#--READ_STRUCTURE).|
+   | `-e, --email` | EMAIL | Email address for hub file to share details.|
+   | `-n, --name` | NAME | Hub name to store in CSC-Allas or hosting.|
    | `-d, --dta` | | Add `-d, --dta` (downstream-transcriptome-assembly) if you plan to perform [TFE-based analysis](https://github.com/my0916/STRT2/blob/master/TFE-README.md).<br>Please note that this leads to fewer alignments with short-anchors.|
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
    
-   - `-a, --annotation` availability as of July 2020:
+   - `-a, --annotation` availability as of Nov 2022:
    
     | | RefSeq (ref) | Ensembl (ens) | KnownGenes (kg) | Gencode |
     | :---: | :---: | :---: | :---: | :---: |
     | hg19 (human) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-    |  hg38 (human) | :heavy_check_mark: | NA | :heavy_check_mark: | :heavy_check_mark: |
+    | hg38 (human) | :heavy_check_mark: | NA | :heavy_check_mark: | :heavy_check_mark: |
     | mm9 (mouse) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | NA |
     | mm10 (mouse) | :heavy_check_mark: | NA | :heavy_check_mark: | :heavy_check_mark: |
+    | mm39 (mouse) | :heavy_check_mark: | NA | :heavy_check_mark: | :heavy_check_mark: |
     | canFam3 (dog) | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
+    | canFam6 (dog) | :heavy_check_mark: | NA | NA | NA |
+    | bosTau9 (bovine) | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
  
 ## Outputs
 Outputs are provided in `out` directory.
@@ -151,39 +169,63 @@ https://ccb.jhu.edu/software/hisat2/manual.shtml#alignment-summary
 Metrics file indicating the numbers of duplicates produced by the Picard MarkDuplicates program.
 https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.4.0/picard_sam_markduplicates_MarkDuplicates.php
 
+- __`OUTPUT`-QC-BeeswarmPlots.pdf__ <br>
+Visualization quality check values for each developmental stage using BeeswarmPlots.
 
-## fastq-fastQC-UPPMAX.sh
+- __Rplots.pdf__ <br>
+Elbow, JackStraw, PCA, UMAP and violin plots.
+
+## fastq-fastQC.sh
 After running the pipeline above, you can generate fastq files for each sample from the output BAM files in the `fastq` directory. These fastq files (without duplicated reads) can be submitted to public sequence databases.<br>
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) files are also generated for each fastq file in the `fastqc` directory.<br>
-Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated.
+Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated. See as an example, [STRTN_MOUSE_LIB_MultiQC_report.html](). 
 
-## How to build HISAT2 index
-Here is the case for the dog genome (canFam3).
-### 1. Obtain the genome sequences of reference and ERCC spike-ins. 
+## How to build HISAT2 index in CSC
+Here is the case for house mouse genome (mm39). The genome indexing step requires big memory and it might not be possible to carry out it on a laptop. Indexes and dictionary was prepared in CSC, see commands at STRTN-Indexes-Dictionary-CSC.sh.
+### 1. Create conda environment folder file to install the required packages, install and add the bin directory to the path.
+```
+mkdir STRTN-env
+conda-containerize new --prefix STRTN-env STRTN-env.yml
+export PATH="<install_dir>/STRTN-env/bin:$PATH"
+```
+### 2. Load the required module.
+```
+module load tykky
+export PATH="<install_dir>/STRTN-env/bin:$PATH"
+
+module load r-env
+if test -f ~/.Renviron; then
+    sed -i '/TMPDIR/d' ~/.Renviron
+fi
+echo "TMPDIR=${WorkingDir_PATH}" >> ~/.Renviron
+```
+### 3. Obtain the genome sequences of reference and ERCC spike-ins. 
 You may add the ribosomal DNA repetitive unit for human (U13369) and mouse (BK000964).
 ```
-wget http://hgdownload.cse.ucsc.edu/goldenPath/canFam3/bigZips/canFam3.fa.gz
-unpigz -c canFam3.fa.gz | ruby -ne '$ok = $_ !~ /^>chrUn_/ if $_ =~ /^>/; puts $_ if $ok' > canFam3_reference.fasta
-
+wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.gz
+unpigz -c mm39.fa.gz | ruby -ne '$ok = $_ !~ /^>chrUn_/ if $_ =~ /^>/; puts $_ if $ok' > mouse_reference.fasta
 wget https://www-s.nist.gov/srmors/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
-cat SRM2374_putative_T7_products_NoPolyA_v2.FASTA >> canFam3_reference.fasta
+cat SRM2374_putative_T7_products_NoPolyA_v2.FASTA >> mouse_reference.fasta
 ```
-### 2. Extract splice sites and exons from a GTF file.
-Here Ensembl transcript map (canFam3.transMapEnsemblV4.gtf.gz) was downloaded from the UCSC Table Browser.
+### 4. Extract splice sites and exons from a GTF file. Here we used wgEncodeGencodeBasicVM30 as the annotation file.
 ```
-unpigz -c canFam3.transMapEnsemblV4.gtf.gz | hisat2_extract_splice_sites.py - | grep -v ^chrUn > canFam3.ss
-unpigz -c canFam3.transMapEnsemblV4.gtf.gz | hisat2_extract_exons.py - | grep -v ^chrUn > canFam3.exon
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M31/gencode.vM31.annotation.gtf.gz
+unpigz -c gencode.vM31.annotation.gtf.gz | hisat2_extract_splice_sites.py - | grep -v ^chrUn > splice_sites.txt
+unpigz -c gencode.vM31.annotation.gtf.gz | hisat2_extract_exons.py - | grep -v ^chrUn > exons.txt
 ```
 You may additionally perform `hisat2_extract_snps_haplotypes_UCSC.py` to extract SNPs and haplotypes from a dbSNP file for human and mouse.
-
-### 3. Build the HISAT2 index.
+### 5. Build the HISAT2 index.
 ```
-hisat2-build canFam3_reference.fasta --ss canFam3.ss --exon canFam3.exon canFam3_reference
+hisat2-build mouse_reference.fasta --ss splice_sites.txt --exon exons.txt mouse_index/mouse_reference
 ```
-This outputs a set of files with suffixes. Here, `canFam3_reference.1.ht2`, `canFam3_reference.2.ht2`, ..., `canFam3_reference.8.ht2` are generated.<br>In this case, `canFam3_reference` is the basename used for `-i, --index`.
-
-### 4. Prepare the sequence dictionary for the reference sequence. 
+This outputs a set of files with suffixes. Here, `mouse_reference.1.ht2`, `mouse_reference.2.ht2`, ..., `mouse_reference.8.ht2` are generated.<br>In this case, `mouse_reference` is the basename used for `-i, --index`.
+### 6. Create the sequence dictionary for the reference and Spike-in sequences.
 ```
-java -jar picard.jar CreateSequenceDictionary R=canFam3_reference.fasta O=canFam3_reference.dict
+picard CreateSequenceDictionary R=mouse_reference.fasta O=mouse_reference.dict
 ```
-This is required for the Picard MergeBamAlignment program. Note that the original FASTA file (`canFam3_reference.fasta` here) is also required.
+This is required for the Picard MergeBamAlignment program. Note that the original FASTA file (`mouse_reference.fasta` here) is also required.
+### 7. Put the genome indexes, genome fasta file, sequence dictionary to same folder.
+```
+mv mouse_reference.dict mouse_reference
+mv mouse_reference.fasta mouse_reference
+```
