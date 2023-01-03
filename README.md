@@ -145,11 +145,11 @@ Quality check report by boxplots.
 
 - __`OUTPUT`\_byGene-counts.txt__ <br>
 Read count table output from featureCounts.
-http://bioinf.wehi.edu.au/subread-package/SubreadUsersGuide.pdf
+https://bioconductor.org/packages/release/bioc/vignettes/Rsubread/inst/doc/SubreadUsersGuide.pdf
 
 - __`OUTPUT`\_byGene-counts.txt.summary__ <br>
 Filtering summary from featureCounts.
-http://bioinf.wehi.edu.au/subread-package/SubreadUsersGuide.pdf
+https://bioconductor.org/packages/release/bioc/vignettes/Rsubread/inst/doc/SubreadUsersGuide.pdf
 
 - __Output_bam__ <br>
 Resulting BAM files including unmapped, non-primary aligned, and duplicated (marked) reads.
@@ -159,21 +159,24 @@ Index files (.bai) of the resulting BAM files in the `Output_bam` directory.
 
 - __ExtractIlluminaBarcodes_Metrics__ <br>
 Metrics file produced by the Picard ExtractIlluminaBarcodes program. The number of matches/mismatches between the barcode reads and the actual barcodes is shown per lane.
-https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.0.0/picard_illumina_ExtractIlluminaBarcodes.php
+https://gatk.broadinstitute.org/hc/en-us/articles/360037426491-ExtractIlluminaBarcodes-Picard-
 
 - __HISAT2_Metrics__ <br>
 Alignment summary of samples from each lane produced by the HISAT2 program. 
-https://ccb.jhu.edu/software/hisat2/manual.shtml#alignment-summary
+https://daehwankimlab.github.io/hisat2/manual/
 
 - __MarkDuplicates_Metrics__ <br>
 Metrics file indicating the numbers of duplicates produced by the Picard MarkDuplicates program.
-https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.4.0/picard_sam_markduplicates_MarkDuplicates.php
+https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-
 
 - __`OUTPUT`-QC-BeeswarmPlots.pdf__ <br>
 Visualization quality check values for each developmental stage using BeeswarmPlots.
+https://search.r-project.org/CRAN/refmans/beeswarm/html/beeswarm.html
 
 - __Rplots.pdf__ <br>
 Elbow, JackStraw, PCA, UMAP and violin plots.
+https://satijalab.org/seurat/articles/pbmc3k_tutorial.html
+https://satijalab.org/seurat/reference/runumap
 
 ## fastq-fastQC.sh
 After running the pipeline above, you can generate fastq files for each sample from the output BAM files in the `fastq` directory. These fastq files (without duplicated reads) can be submitted to public sequence databases.<br>
