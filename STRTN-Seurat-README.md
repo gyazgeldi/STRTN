@@ -11,7 +11,6 @@ STRT-N library results using Seurat package (v3.0.2) (Butler et al., 2018) can b
 - [forcats](https://forcats.tidyverse.org/)
 - [Seurat](https://satijalab.org/seurat/)
 
-
 ## Requirements
 - `Example-BarcodesStages.txt` : Sample explanation with developmental stages (in `src` directory).
    #### Example
