@@ -178,7 +178,7 @@ Elbow, JackStraw, PCA, UMAP and violin plots.
 ## fastq-fastQC.sh
 After running the pipeline above, you can generate fastq files for each sample from the output BAM files in the `fastq` directory. These fastq files (without duplicated reads) can be submitted to public sequence databases.<br>
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) files are also generated for each fastq file in the `fastqc` directory.<br>
-Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated. See as an example, [STRTN_MOUSE_LIB_MultiQC_report.html](). 
+Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated.
 
 ## How to build HISAT2 index in CSC
 Here is the case for house mouse genome (mm39). The genome indexing step requires big memory and it might not be possible to carry out it on a laptop. Indexes and dictionary was prepared in CSC, see commands at STRTN-Indexes-Dictionary-CSC.sh.
