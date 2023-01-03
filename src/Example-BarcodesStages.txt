@@ -46,4 +46,3 @@ STRTN_MOUSE_LIB_6.output.bam	oocyte
 STRTN_MOUSE_LIB_7.output.bam	oocyte
 STRTN_MOUSE_LIB_8.output.bam	oocyte
 STRTN_MOUSE_LIB_9.output.bam	2cell
-
