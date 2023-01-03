@@ -1,0 +1,21 @@
+name: STRTN-env
+channels:
+  - bioconda
+  - r
+  - defaults
+  - conda-forge
+dependencies :
+  - pigz=2.6
+  - python=3.9.12
+  - bedtools=2.30.0
+  - fastqc=0.11.9
+  - hisat2=2.2.1
+  - multiqc=1.13
+  - picard=2.18.29
+  - samtools=1.6
+  - stringtie=2.1.7
+  - subread=2.0.1
+  - r-base=4.2.0
+  - ruby=2.6.6
+  - ucsc-bedgraphtobigwig=377
+  - seqtk=1.3
