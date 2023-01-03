@@ -49,7 +49,7 @@ For [CSC](https://www.csc.fi/), these software are available through the `module
   └── L004
 ```
 - HISAT2 index built with a reference genome, (ribosomal DNA), and ERCC spike-ins 
-  - See also [How to build HISAT2 index](https://github.com/gyazgeldi/STRTN/edit/master/README.md#how-to-build-hisat2-index-in-csc).
+  - See also [How to build HISAT2 index](https://github.com/gyazgeldi/STRTN#how-to-build-hisat2-index-in-csc).
   - The HISAT2 index directory should include the followings:
 ```
     ├── [basename].1.ht2
