@@ -104,6 +104,7 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeG
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
    
+   
    - `-a, --annotation` availability as of Nov 2022:
    
     | | RefSeq (ref) | Ensembl (ens) | KnownGenes (kg) | Gencode |
