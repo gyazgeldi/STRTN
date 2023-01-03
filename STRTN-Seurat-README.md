@@ -42,14 +42,15 @@ sbatch -A project_2005262 ./STRTN-Seurat-CSC.sh -w /scratch/project_2005262
 
    | Name | Description |
    | :--- | :--- |
-   | `-w, --working` | /PATH/to/the working directory. | 
+   | `-w, --working` | /PATH/to/the working directory. |
    
 - __Optional__
 
-   | Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Default value|Description|
+   | Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Description|
+   | :--- | :--- |
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
-   
+     
 Note: In the case for 48 human mouse samples, `npcs` argument as 33 for PCA and `dims` argument as 4 for UMAP were used.
 
 ## Outputs
