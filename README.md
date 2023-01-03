@@ -29,7 +29,7 @@ For `fastq-fastQC.sh`
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 - [MultiQC](https://multiqc.info/)
 
-For `STRTN-TFE.sh` ([TFE-based analysis](https://github.com/my0916/STRT2/blob/master/TFE-README.md))
+For `STRT-TFE.sh` ([TFE-based analysis](https://github.com/my0916/STRT2/blob/master/TFE-README.md))
 - [StringTie](https://ccb.jhu.edu/software/stringtie/)
 
 The conda environment is provided as `STRTN-env.yml`. The environment can be created with the followings:
