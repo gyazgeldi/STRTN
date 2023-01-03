@@ -29,10 +29,11 @@ STRT-N library results using Seurat package (v3.0.2) (Butler et al., 2018) can b
 - Quality check report for all samples, `-QC.txt` (in `out` directory).
  
 ## Example usage
+For general users:
 ```
 ./STRTN-Seurat.sh -w /mnt/c/Users/gamyaz/STRTN-Pipeline
 ```
-For UPPMAX:
+For CSC users:
 ```
 sbatch -A project_2005262 ./STRTN-Seurat-CSC.sh -w /scratch/project_2005262
 ```
