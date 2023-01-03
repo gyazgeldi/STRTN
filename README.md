@@ -16,7 +16,7 @@ For `STRTN.sh` ([The main pipeline with visualization]())
 - [Seqtk](https://github.com/lh3/seqtk)
 - [UCSC-bedGraphToBigWig](https://github.com/bioconda/bioconda-recipes/tree/master/recipes/ucsc-bedgraphtobigwig)
 
-For `STRTN-Seurat.sh` ([The visualization of results using Seurat package]())
+For `STRTN-Seurat.sh` ([The visualization of results using Seurat package](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-Seurat-README.md))
 - [stringr](https://stringr.tidyverse.org/)
 - [dplyr](https://dplyr.tidyverse.org/)
 - [ggplot2](https://ggplot2.tidyverse.org/)
