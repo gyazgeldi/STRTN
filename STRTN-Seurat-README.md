@@ -51,7 +51,7 @@ sbatch -A project_2005262 ./STRTN-Seurat-CSC.sh -w /scratch/project_2005262
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
      
-Note: In the case for 48 human mouse samples, `npcs` argument as 33 for PCA and `dims` argument as 4 for UMAP were used.
+Note: In the case for 48 mouse samples, `npcs` argument as 33 for PCA and `dims` argument as 4 for UMAP were used.
 
 ## Outputs
 Outputs are provided in `out` directory.
