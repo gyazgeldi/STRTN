@@ -66,7 +66,7 @@ For [CSC](https://www.csc.fi/), these software are available through the `module
 - Source files (in `src` directory)
   - `barcode.txt` : Barcode sequence with barcode name (1–48). __Please modify if you used different (number of) barcodes.__
   - `ERCC.bed` : 5'-end 50 nt region of ERCC spike-ins ([SRM2374](https://www-s.nist.gov/srmors/view_detail.cfm?srm=2374)) for annotation and quality check.
-  - `Example-BarcodesStages` : Sample explanation for data reduction and visualization using violin plots.
+  - `Example-BarcodesStages` : Sample explanation for data reduction and visualization using PCA, UMAP and violin plots.
 
 ## Example usage
 For general users:
