@@ -1,4 +1,3 @@
-name: STRTN-env
 channels:
   - bioconda
   - r
