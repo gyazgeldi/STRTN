@@ -212,9 +212,9 @@ cat SRM2374_putative_T7_products_NoPolyA_v2.FASTA >> mouse_reference.fasta
 ```
 ### 4. Extract splice sites and exons from a GTF file. Here we used wgEncodeGencodeBasicVM30 as the annotation file.
 ```
-wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M31/gencode.vM31.annotation.gtf.gz
-unpigz -c gencode.vM31.annotation.gtf.gz | hisat2_extract_splice_sites.py - | grep -v ^chrUn > splice_sites.txt
-unpigz -c gencode.vM31.annotation.gtf.gz | hisat2_extract_exons.py - | grep -v ^chrUn > exons.txt
+wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/database/wgEncodeGencodeBasicVM31.txt.gz
+unpigz -c wgEncodeGencodeBasicVM31.txt.gz | hisat2_extract_splice_sites.py - | grep -v ^chrUn > splice_sites.txt
+unpigz -c wgEncodeGencodeBasicVM31.txt.gz | hisat2_extract_exons.py - | grep -v ^chrUn > exons.txt
 ```
 You may additionally perform `hisat2_extract_snps_haplotypes_UCSC.py` to extract SNPs and haplotypes from a dbSNP file for human and mouse.
 ### 5. Build the HISAT2 index.
