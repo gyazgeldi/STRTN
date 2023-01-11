@@ -68,6 +68,16 @@ For [CSC](https://www.csc.fi/), these software are available through the `module
   - `ERCC.bed` : 5'-end 50 nt region of ERCC spike-ins ([SRM2374](https://www-s.nist.gov/srmors/view_detail.cfm?srm=2374)) for annotation and quality check.
   - `Example-BarcodesStages` : Sample explanation for data reduction and visualization using PCA, UMAP and violin plots.
 
+## Usage:
+For general users:
+```
+./STRTN.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH}  -e {EMAIL} -n {NAME_HUB} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}    
+```
+For CSC users:
+```
+sbatch -A project_2005262 ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH} -e {EMAIL} -n {NAME_HUB} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}   
+```
+
 ## Example usage
 For general users:
 ```
