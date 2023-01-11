@@ -169,6 +169,10 @@ https://daehwankimlab.github.io/hisat2/manual/
 Metrics file indicating the numbers of duplicates produced by the Picard MarkDuplicates program.
 https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-
 
+- __hub.txt__ <br>
+Hub file to visualize resulting data in UCSC. 
+https://genome.ucsc.edu/
+
 - __`OUTPUT`-QC-BeeswarmPlots.pdf__ <br>
 Visualization quality check values for each developmental stage using BeeswarmPlots.
 https://search.r-project.org/CRAN/refmans/beeswarm/html/beeswarm.html
