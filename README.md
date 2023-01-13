@@ -179,18 +179,14 @@ https://daehwankimlab.github.io/hisat2/manual/
 Metrics file indicating the numbers of duplicates produced by the Picard MarkDuplicates program.
 https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-
 
-- __hub.txt__ <br>
-Hub file to visualize resulting data in UCSC. 
-https://genome.ucsc.edu/
+- __`OUTPUT`.output.bam__ <br>
+BAM files containing reads except for duplicate and non-primary reads.
 
-- __`OUTPUT`-QC-BeeswarmPlots.pdf__ <br>
-Visualization quality check values for each developmental stage using BeeswarmPlots.
-https://search.r-project.org/CRAN/refmans/beeswarm/html/beeswarm.html
+- __`OUTPUT`.minus.bw__ <br> and - __`OUTPUT`.plus.bw__ <br>
+BigWig files for each strands of each sample.
 
-- __Rplots.pdf__ <br>
-Elbow, JackStraw, PCA, UMAP and violin plots.
-https://satijalab.org/seurat/articles/pbmc3k_tutorial.html
-https://satijalab.org/seurat/reference/runumap
+- __coding_5end.bb__ <br>
+BigBed file for coding-5'end annotation file.
 
 ## fastq-fastQC.sh
 After running the pipeline above, you can generate fastq files for each sample from the output BAM files in the `fastq` directory. These fastq files (without duplicated reads) can be submitted to public sequence databases.<br>
