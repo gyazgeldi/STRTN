@@ -49,19 +49,13 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeG
    | `-v, --version`| | Show version.|
 
 ## Outputs
-Outputs are provided in `out` directory.
+Outputs are provided in {WorkingPATH} directory.
 
 - __hub.txt__ <br>
 Parameters for each tracks. 
 
-- __scale_factor_df.txt__ <br> 
-Scale factor values for each sample (in `out` directory, created by calculationScaleFactor.R)
-
-- __`OUTPUT`plus.bw__ <br>
-BigWig files for forward strands.
-
-- __`OUTPUT`minus.bw__ <br>
-BigWig files for reverse strands.
+- __link__ <br>
+The link indicating hub.txt location that can be copied directly to Track Hub in the UCSC genome browser
 
 ## Hosting of data
 Track hub file and results files must be located in web-accessible locations (https://genome.ucsc.edu/goldenPath/help/hgTrackHubHelp#Hosting). 
