@@ -13,7 +13,7 @@ Usage: ${PROGNAME} [-w <path (required)>]
 Options: 
 -w, --working	/PATH/to/the working directory. Required! 
 -e, --email     Email address for hub file.
--n, --name	Hub name to store in Allas or hosting service. (default: STRT2-hub)
+-n, --name	Hub name to store in Allas or hosting service. (default: STRTN-hub)
 -h, --help      Show usage.
 -v, --version   Show version.
 EOS
