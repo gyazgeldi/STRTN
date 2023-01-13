@@ -182,7 +182,7 @@ https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Pi
 - __`OUTPUT`.output.bam__ <br>
 BAM files containing reads except for duplicate and non-primary reads.
 
-- __`OUTPUT`.minus.bw__ <br> and - __`OUTPUT`.plus.bw__ <br>
+- __`OUTPUT`.minus.bw__ and - __`OUTPUT`.plus.bw__ <br>
 BigWig files for each strands of each sample.
 
 - __coding_5end.bb__ <br>
