@@ -1,9 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=MainPipeline
-#SBATCH --partition=small
-#SBATCH --time=24:00:00
-#SBATCH --mem=200GB
-#SBATCH --cpus-per-task=8
 
 PROGNAME="$( basename $0 )"
 
@@ -18,8 +13,6 @@ Options:
   -b, --basecalls         /PATH/to/the Illumina basecalls directory. Required!
   -i, --index             /PATH/to/the directory and basename of the HISAT2 index. Fasta file has to be 'basename.fasta'. Required!
   -w, --working           /PATH/to/the working directory. Required!
-  -e, --email             Email address for hub file.
-  -n, --name		  Hub name to store in Allas.
   -c, --center            The name of the sequencing center that produced the reads. (default: CENTER)
   -r, --run               The barcode of the run. Prefixed to read names. (default: RUNBARCODE)
   -s, --structure         Read structure (default: 8M3S75T6B)
@@ -525,43 +518,6 @@ do
     samtools index ${name}.output.bam
 done
 
-# Creation the tracks for BAM files
-shortLabel_hub="STRT-N data sequencing library tracks"
-longLabel_hub="STRT-N data sequencing library tracks"
-useOneFile=on
-echo -e "hub "${NAME_HUB}"\n""shortLabel "${shortLabel_hub}"\n""longLabel "${longLabel_hub}"\n""useOneFile "${useOneFile}"\n""email "${EMAIL}"\n""\n""genome "${GENOME_VALUE}"\n" >> hub.txt
-
-readarray -t bam_array < <(printf '%s\n' *.output.bam | sort -V)
-
-# First barcode will be shown as example. Other barcodes will be hidden so one can set up configurations as desired.
-file=${bam_array[0]}
-name=$(basename $file .output.bam)
-longLabel=${name}", read alignments tracks"
-type=bam
-visibility=squish
-alwaysZero=on
-graphType=bar
-windowingFunction=mean
-bamColorMode=strand
-colorByStrand="0,0,255 255,0,0"
-bigDataUrl=$file
-echo -e "track "${name}"\n""shortLabel "${name}"\n""longLabel "$longLabel"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""bamColorMode "${bamColorMode}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
-
-for file in "${bam_array[@]:1:47}"
-do
-    name=$(basename $file .output.bam)
-    longLabel=${name}", read alignments tracks"
-    type=bam
-    visibility=hide
-    alwaysZero=on
-    graphType=bar
-    windowingFunction=mean
-    bamColorMode=strand
-    colorByStrand="0,0,255 255,0,0"
-    bigDataUrl=${file}
-    echo -e "track "${name}"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""bamColorMode "${bamColorMode}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
-done
-
 # Create spike-ins size file and chromosomal size file
 wget https://www-s.nist.gov/srmors/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
 seqtk seq -L 5 SRM2374_putative_T7_products_NoPolyA_v2.FASTA > spikeins_size.fasta
@@ -608,48 +564,6 @@ do
     bedGraphToBigWig ${WorkingDir_PATH}/${name}_minus.bedgraph ${GENOME_VALUE}.chrom.sizes_with_spike_ins ${WorkingDir_PATH}/${name}_minus.bw
 done
 
-# Creation the tracks for bigWig files
-# BigWig files
-# First barcode will be shown as example.
-file=${bam_array[0]}
-name=$(basename $file .output.bam)
-longLabel=${name}", forward strand histogram tracks"
-type=bigWig
-visibility=full
-alwaysZero=on
-graphType=bar
-windowingFunction=mean
-color=0,0,100
-bigDataUrl=${name}_plus.bw
-echo -e "track "${name}_plus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
-
-trackname=${name}", reverse strand"
-longLabel=${name}", reverse strand histogram tracks"
-color=100,0,0
-bigDataUrl=${name}_minus.bw
-echo -e "track "${name}_minus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
-
-# Other samples
-for file in "${bam_array[@]:1:47}"
-do
-    name=$(basename $file .output.bam)
-    trackname=${name}", forward strand"
-    longLabel=${name}", forward strand histogram tracks"
-    type=bigWig
-    visibility=hide
-    alwaysZero=on
-    graphType=bar
-    windowingFunction=mean
-    color=0,0,100
-    bigDataUrl=${name}_plus.bw
-    echo -e "track "${name}_plus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
-    trackname=${name}", reverse strand"
-    longLabel=${name}", reverse strand histogram tracks"
-    color=100,0,0
-    bigDataUrl=${name}_minus.bw
-    echo -e "track "${name}_minus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
-done
-
 # Create coding_5´end bigBed file
 cp ${WorkingDir_PATH}/src/coding_5end.bed ${WorkingDir_PATH}/
 sort -k1,1 -k2,2n coding_5end.bed > sorted_coding_5end.bed
@@ -658,15 +572,6 @@ chmod a+x bedToBigBed
 wget https://hgdownload.soe.ucsc.edu/goldenPath/${GENOME_VALUE}/bigZips/${GENOME_VALUE}.chrom.sizes
 cat ${GENOME_VALUE}.chrom.sizes > ${GENOME_VALUE}.chrom.sizes_without_spike_ins
 ./bedToBigBed sorted_coding_5end.bed ${GENOME_VALUE}.chrom.sizes_without_spike_ins coding_5end.bb
-
-# Creation the track for bigBed file
-trackname="coding_5´-end"
-longLabel="coding 5'-end track"
-type=bigBed
-visibility=full
-colorByStrand="0,0,100 100,0,0"
-bigDataUrl=coding_5end.bb
-echo -e "track "${trackname}"\n""shortLabel "${trackname}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
 
 rm coding_5end.bed
 rm .bedgraph*
