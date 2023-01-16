@@ -1,6 +1,6 @@
 # Visualization in UCSC
 
-STRT-N library results is viewed in UCSC-tool (Lee et al., 2022) by the main pipeline STRTN.sh. 
+STRT-N library results can be viewed in UCSC-tool (Lee et al., 2022) using STRTN.sh and STRTN-UCSC-Allas.sh. STRTN.sh pipeline automatically gives BAM files for alignments, BigWig files for read frequency and BigBed file of coding-5'end for annotation items. STRTN-UCSC-Allas.sh automatically gives hub.txt to visualize in UCSC and sharable link with collabrators.
 
 ## Dependencies
 - [Samtools](https://www.htslib.org/)
@@ -12,17 +12,23 @@ STRT-N library results is viewed in UCSC-tool (Lee et al., 2022) by the main pip
 - `*.output.bam` : BAM files for each sample (in `out` directory).
 - `coding_5end.bed`: Coding 5'end BED file as an annotation file to view 5'ends (in `src` directory). 
 
-## Example usage
+## Example usage of STRTN.sh
 For general users:
 ```
-./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
+./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
+sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 
-## Parameters
+## Example usage of STRTN-UCSC-Allas.sh
+For CSC users:
+```
+sbatch -A project_2005262 ./STRTN-UCSC-Allas.sh -w /scratch/project_2005262 -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse
+```
+
+## Parameters for STRTN.sh
 - __Mandatory__
 
    | Name | Description |
@@ -48,7 +54,34 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeG
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
 
-## Outputs
+## Parameters for STRTN-UCSC-Allas.sh
+- __Mandatory__
+
+   | Name | Description |
+   | :--- | :--- |
+   | `-w, --working` | /PATH/to/the working directory. | 
+   
+- __Optional__
+
+   | Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Default value|Description|
+   | :--- | :--- | :--- |
+   | `-e, --email` | EMAIL | Email address for hub file to share details.|
+   | `-n, --name` | NAME | Hub name to store in CSC-Allas or hosting.|
+   | `-h, --help`| | Show usage.|
+   | `-v, --version`| | Show version.|
+
+## Outputs for STRTN.sh
+
+- __`OUTPUT`.output.bam__ <br>
+BAM files containing reads except for duplicate and non-primary reads.
+
+- __`OUTPUT`.minus.bw__ and __`OUTPUT`.plus.bw__ <br>
+BigWig files for each strands of each sample.
+
+- __coding_5end.bb__ <br>
+BigBed file for coding-5'end annotation file.
+
+## Outputs for STRTN-UCSC-Allas.sh
 Outputs are provided in {WorkingPATH} directory.
 
 - __hub.txt__ <br>
