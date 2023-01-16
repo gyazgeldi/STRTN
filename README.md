@@ -81,11 +81,11 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {
 ## Example usage
 For general users:
 ```
-./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
+./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse -c FUGU -r RUNBARCODE -s 8M3S75T6B
+sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 
 ## Parameters
@@ -108,8 +108,6 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeG
    | `-c, --center ` | CENTER | The name of the sequencing center that produced the reads.<br>Required for the the Picard IlluminaBasecallsToSam program.|
    | `-r, --run` | RUNBARCODE | The barcode of the run. Prefixed to read names.<br>Required for the the Picard IlluminaBasecallsToSam program.|
    | `-s, --structure` | 8M3S74T6B | Read structure.<br>Required for the the Picard IlluminaBasecallsToSam program.<br>Details are described [here](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.4.0/picard_illumina_IlluminaBasecallsToSam.php#--READ_STRUCTURE).|
-   | `-e, --email` | EMAIL | Email address for hub file to share details.|
-   | `-n, --name` | NAME | Hub name to store in CSC-Allas or hosting.|
    | `-d, --dta` | | Add `-d, --dta` (downstream-transcriptome-assembly) if you plan to perform [TFE-based analysis](https://github.com/my0916/STRT2/blob/master/TFE-README.md).<br>Please note that this leads to fewer alignments with short-anchors.|
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
