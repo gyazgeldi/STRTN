@@ -68,7 +68,7 @@ sbatch -A project_2005262 ./STRTN-UCSC-Allas.sh -w /scratch/project_2005262 -e g
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
 
-## Outputs for STRTN.sh
+## Outputs for STRTN.sh (related to visualization)
 
 - __`OUTPUT`.output.bam__ <br>
 BAM files containing reads except for duplicate and non-primary reads.
