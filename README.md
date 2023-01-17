@@ -9,7 +9,7 @@ https://github.com/gyazgeldi/STRTN.git
 ## Dependencies
 For `STRTN.sh` ([The main pipeline with visualization](https://github.com/gyazgeldi/STRTN/blob/master/Visualization-in-UCSC-README.md))
 - [Picard](https://broadinstitute.github.io/picard/)
-- [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml)
+- [HISAT2](https://daehwankimlab.github.io/hisat2/)
 - [SAMtools](http://samtools.sourceforge.net/)
 - [bedtools](https://bedtools.readthedocs.io/en/latest/)
 - [Subread](http://subread.sourceforge.net/)
@@ -34,8 +34,8 @@ For `STRT-TFE.sh` ([TFE-based analysis](https://github.com/my0916/STRT2/blob/mas
 
 The conda environment is provided as `STRTN-env.yml`. The environment can be created with the followings:
 ```
-conda env create -f STRTN-env.yml
-conda activate STRTN-env
+conda env create -n STRTN-test -f STRTN-env.yml
+conda activate STRTN-test
 ```
 
 For [CSC](https://www.csc.fi/), these software are available through the `module` command in the scripts (`STRTN-CSC.sh`, `STRTN-Seurat.sh`, `STRTN-UCSC-Allas.sh`, `STRTN-TFE-CSC.sh`, and `fastq-fastqc-CSC.sh` as well as `STRTN-Indexes-Dictionary-CSC.sh`).
@@ -71,11 +71,11 @@ For [CSC](https://www.csc.fi/), these software are available through the `module
 ## Usage:
 For general users:
 ```
-./STRTN.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH}  -e {EMAIL} -n {NAME_HUB} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}    
+./STRTN.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}    
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH} -e {EMAIL} -n {NAME_HUB} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}   
+sbatch -A project_2005262 ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}   
 ```
 
 ## Example usage
@@ -107,7 +107,7 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeG
    | `-a, --annotation` | ref | Gene annotation for QC and counting. <br> Choose from `ref`(RefSeq)/`ens`(Ensembl)/`kg`(UCSC KnownGenes), or directly input the Gencode annotation file name (eg. `wgEncodeGencodeBasicVM30`) for Gencode. <br>Note that some annotations are unavailable in some cases. Please find the details below.
    | `-c, --center ` | CENTER | The name of the sequencing center that produced the reads.<br>Required for the the Picard IlluminaBasecallsToSam program.|
    | `-r, --run` | RUNBARCODE | The barcode of the run. Prefixed to read names.<br>Required for the the Picard IlluminaBasecallsToSam program.|
-   | `-s, --structure` | 8M3S74T6B | Read structure.<br>Required for the the Picard IlluminaBasecallsToSam program.<br>Details are described [here](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.4.0/picard_illumina_IlluminaBasecallsToSam.php#--READ_STRUCTURE).|
+   | `-s, --structure` | 8M3S75T6B | Read structure.<br>Required for the the Picard IlluminaBasecallsToSam program.<br>Details are described [here](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.4.0/picard_illumina_IlluminaBasecallsToSam.php#--READ_STRUCTURE).|
    | `-d, --dta` | | Add `-d, --dta` (downstream-transcriptome-assembly) if you plan to perform [TFE-based analysis](https://github.com/my0916/STRT2/blob/master/TFE-README.md).<br>Please note that this leads to fewer alignments with short-anchors.|
    | `-h, --help`| | Show usage.|
    | `-v, --version`| | Show version.|
