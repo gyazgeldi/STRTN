@@ -100,13 +100,14 @@ name=$(basename $file .output.bam)
 longLabel=${name}", read alignments tracks"
 type=bam
 visibility=squish
+autoScale=on
 alwaysZero=on
 graphType=bar
 windowingFunction=mean
 bamColorMode=strand
 colorByStrand="0,0,255 255,0,0"
 bigDataUrl=$file
-echo -e "track "${name}"\n""shortLabel "${name}"\n""longLabel "$longLabel"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""bamColorMode "${bamColorMode}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
+echo -e "track "${name}"\n""shortLabel "${name}"\n""longLabel "$longLabel"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""autoScale "${autoScale}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""bamColorMode "${bamColorMode}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
 
 for file in "${bam_array[@]:1:47}"
 do
@@ -114,13 +115,14 @@ do
     longLabel=${name}", read alignments tracks"
     type=bam
     visibility=hide
+    autoScale=on
     alwaysZero=on
     graphType=bar
     windowingFunction=mean
     bamColorMode=strand
     colorByStrand="0,0,255 255,0,0"
     bigDataUrl=${file}
-    echo -e "track "${name}"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""bamColorMode "${bamColorMode}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
+    echo -e "track "${name}"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""autoScale "${autoScale}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""bamColorMode "${bamColorMode}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
 done
 
 # Creation the tracks for bigWig files
@@ -131,18 +133,19 @@ name=$(basename $file .output.bam)
 longLabel=${name}", forward strand histogram tracks"
 type=bigWig
 visibility=full
+autoScale=on
 alwaysZero=on
 graphType=bar
 windowingFunction=mean
 color=0,0,100
 bigDataUrl=${name}_plus.bw
-echo -e "track "${name}_plus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
+echo -e "track "${name}_plus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""autoScale "${autoScale}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
 
 trackname=${name}", reverse strand"
 longLabel=${name}", reverse strand histogram tracks"
 color=100,0,0
 bigDataUrl=${name}_minus.bw
-echo -e "track "${name}_minus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
+echo -e "track "${name}_minus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""autoScale "${autoScale}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
 
 # Other samples
 for file in "${bam_array[@]:1:47}"
@@ -152,17 +155,18 @@ do
     longLabel=${name}", forward strand histogram tracks"
     type=bigWig
     visibility=hide
+    autoScale=on
     alwaysZero=on
     graphType=bar
     windowingFunction=mean
     color=0,0,100
     bigDataUrl=${name}_plus.bw
-    echo -e "track "${name}_plus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
+    echo -e "track "${name}_plus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""autoScale "${autoScale}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
     trackname=${name}", reverse strand"
     longLabel=${name}", reverse strand histogram tracks"
     color=100,0,0
     bigDataUrl=${name}_minus.bw
-    echo -e "track "${name}_minus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
+    echo -e "track "${name}_minus"\n""shortLabel "${name}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""autoScale "${autoScale}"\n""alwaysZero "${alwaysZero}"\n""graphType "${graphType}"\n""windowingFunction "${windowingFunction}"\n""color "${color}"\n" >> hub.txt
 done
 
 # Creation the track for bigBed file
@@ -170,9 +174,10 @@ trackname="coding_5´-end"
 longLabel="coding 5'-end track"
 type=bigBed
 visibility=full
+autoScale=on
 colorByStrand="0,0,100 100,0,0"
 bigDataUrl=coding_5end.bb
-echo -e "track "${trackname}"\n""shortLabel "${trackname}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
+echo -e "track "${trackname}"\n""shortLabel "${trackname}"\n""longLabel "${longLabel}"\n""type "${type}"\n""bigDataUrl "${bigDataUrl}"\n""visibility "${visibility}"\n""autoScale "${autoScale}"\n""colorByStrand "\"${colorByStrand}\""\n" >> hub.txt
 
 # Before running this script, please make sure that you accessed allas and are able to use swift protocol. Please follow below commands.
 # module load allas
