@@ -525,7 +525,7 @@ cat ${GENOME_VALUE}.chrom.sizes > ${GENOME_VALUE}.chrom.sizes_without_spike_ins
 ./bedToBigBed sorted_coding_5end.bed ${GENOME_VALUE}.chrom.sizes_without_spike_ins coding_5end.bb
 
 rm coding_5end.bed
-rm .bedgraph*
+rm *.bedgraph
 rm ${GENOME_VALUE}.chrom.sizes
 rm ${GENOME_VALUE}.chrom.sizes_with_spike_ins
 rm out/scale_factor_df.txt
