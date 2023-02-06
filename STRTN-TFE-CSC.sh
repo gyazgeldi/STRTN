@@ -1,9 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=TFE-analysis
-#SBATCH --time=05:00:00
-#SBATCH --partition=small
-#SBATCH --mem=10GB
-#SBATCH --cpus-per-task=8
 
 PROGNAME="$( basename $0 )"
 
@@ -88,22 +83,25 @@ fi
 # Load the required tools
 module load biokit
 module load tykky
-export PATH="$WorkingDir_PATH/STRT2-env/bin:$PATH"
+export PATH="$WorkingDir_PATH/STRTN-env/bin:$PATH"
 
 # Make temporary and output directories
 mkdir byTFE_tmp
 mkdir byTFE_out
 mkdir byTFE_tmp/class
 
+# Specify a temp folder path
+export TMPDIR=$WorkingDir_PATH/byTFE_tmp
+
 OUTPUT_NAME=$(basename out/Output_bam/*_1.output.bam _1.output.bam)
 
 # Sample classification
 while read row; do
-  column1=`echo ${row} | cut -d ' ' -f 1`
-  column2=`echo ${row} | cut -d ' ' -f 2`
+    column1=`echo ${row} | cut -d ' ' -f 1`
+    column2=`echo ${row} | cut -d ' ' -f 2`
   if [[ $column2 != "NA" ]]; then
     mkdir -p byTFE_tmp/class/${column2}
-    cp out/Output_bam/${OUTPUT_NAME}_${column1}.output.bam byTFE_tmp/class/${column2}
+cp out/Output_bam/${OUTPUT_NAME}_${column1}.output.bam byTFE_tmp/class/${column2}
   else
     :
   fi
@@ -121,10 +119,10 @@ CLASS_NAME=$(basename $class byTFE_tmp/class/)
 
   # Extract 1st-exon
   cat $class/stringtie.gtf | awk '{if($7=="+"||$7=="."){print $0}}'| grep 'exon_number "1"' \
-  | awk 'OFS =  "\t" {print $1,$4-1,$5,$12,"0",$7}' | sed -e 's/"//g'| sed -e 's/;//g' > $class/firstExons-fwd.bed 
+      | awk 'OFS =  "\t" {print $1,$4-1,$5,$12,"0",$7}' | sed -e 's/"//g'| sed -e 's/;//g' > $class/firstExons-fwd.bed
   cat $class/stringtie.gtf | awk 'BEGIN{OFS="\t"}{if($7=="-" && $3=="exon"){print $1,$4-1,$5,$12,"0",$7}}' \
-  | sed -e 's/"//g'| sed -e 's/;//g' | sort -k 4,4 -k 1,1 -k 2,2n | bedtools groupby -i stdin -g 4  -c 1,2,3,4,5,6 -o last \
-  | awk 'BEGIN{OFS="\t"}{print $2,$3,$4,$5,$6,$7}' > $class/firstExons-rev.bed
+      | sed -e 's/"//g'| sed -e 's/;//g' | sort -k 4,4 -k 1,1 -k 2,2n | bedtools groupby -i stdin -g 4  -c 1,2,3,4,5,6 -o last \
+      | awk 'BEGIN{OFS="\t"}{print $2,$3,$4,$5,$6,$7}' > $class/firstExons-rev.bed
   cat $class/firstExons-fwd.bed  $class/firstExons-rev.bed | sortBed -i stdin > $class/firstExons.bed
   rm $class/firstExons-fwd.bed && rm $class/firstExons-rev.bed
 
@@ -143,7 +141,7 @@ CLASS_NAME=$(basename $class byTFE_tmp/class/)
   done
   gunzip -c $class/bedGraph/*.bedGraph.gz | sort -k 1,1 -k 2,2n | mergeBed -s -c 4,5,6 -o distinct,sum,distinct -d -1  > $class/fivePrimes.bed
 done
-
+	     
 # TFE annotation
 cat byTFE_tmp/class/*/firstExons.bed | sort -k 1,1 -k 2,2n |awk '{if($6=="+"){print $0}}' | grep -e ERCC -e NIST \
 | mergeBed -s -c 6 -o distinct | bedtools groupby -i stdin -g 1  -c 1,2,3,4 -o first \
