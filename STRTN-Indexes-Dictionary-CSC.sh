@@ -1,13 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=mouse-indexes-dic
-#SBATCH --account=project_2005262
 #SBATCH --time=05:00:00
 #SBATCH --partition=small
 #SBATCH --mem=200GB
 #SBATCH --cpus-per-task=8
 
 module load tykky
-export PATH="/scratch/project_2005262/STRT2-env/bin:$PATH"
+export PATH="<project_account>/STRTN-env/bin:$PATH"
 
 # Creating a directory for indexes
 mkdir mouse_index
