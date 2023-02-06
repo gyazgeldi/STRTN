@@ -508,7 +508,7 @@ cd ..
 # Change the path to run script with conda packages
 module load biokit
 module load tykky
-export PATH="${WorkingDir_PATH}/STRT2-env/bin:$PATH"
+export PATH="${WorkingDir_PATH}/STRTN-env/bin:$PATH"
 
 # Removing reads that have flags 
 for file in ${WorkingDir_PATH}/out/Output_bam/*.output.bam
