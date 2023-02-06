@@ -66,4 +66,4 @@ To visualize in UCSC, please follow following steps:
 join -1 4 -2 4 -t "$(printf '\011')" <(sort -k 4,4 byTFE_tmp/${OUTPUT_NAME}_TFE-regions.bed) <(sort -k 4,4 byTFE_out/${OUTPUT_NAME}_peaks.bed) | awk 'BEGIN{OFS="\t"}{print $2,$3,$4,$1,$5,$6,$8,$9,$10}' > ${OUTPUT_NAME}_TFE-region-peak.txt 
 ```
 2. Remove rows belong to spike-ins.
-3. Upload to `OUTPUT`\_TFE-region-peak.txt to UCSC 
+3. Upload to `OUTPUT`\_TFE-region-peak.txt to UCSC.
