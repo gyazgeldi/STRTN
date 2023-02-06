@@ -222,7 +222,7 @@ r_PATH=$PATH
 
 # Loading required tools
 module load tykky
-export PATH="${WorkingDir_PATH}/STRT2-env/bin:$PATH"
+export PATH="${WorkingDir_PATH}/STRTN-env/bin:$PATH"
 
 # Make temporary and output directory
 mkdir tmp
@@ -551,7 +551,7 @@ cd ..
 # Change the path to run script with conda packages
 module load biokit
 module load tykky
-export PATH="${WorkingDir_PATH}/STRT2-env/bin:$PATH"
+export PATH="${WorkingDir_PATH}/STRTN-env/bin:$PATH"
 
 # Create bedGraph files and bigWig files for forward and reverse strand for each sample
 for file in *.output.bam
