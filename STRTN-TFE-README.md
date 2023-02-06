@@ -1,6 +1,6 @@
 # TFE-based analysis
 
-Transcript far 5'-end (TFE) analysis is developed in [Töhönen et al. 2015](https://doi.org/10.1038/ncomms9207) and is modified in [Ezer et al. 2021](https://doi.org/10.1016/j.xpro.2021.100995). TFEs are defined as the first exon (5'-end region) of assembled STRT reads (transcripts) mapped to genome. 
+Transcript far 5'-end (TFE) analysis is developed in [Töhönen et al. 2015](https://doi.org/10.1038/ncomms9207) and is modified in [Ezer et al. 2021](https://doi.org/10.1016/j.xpro.2021.100995). TFEs are defined as the first exon (5'-end region) of assembled STRT reads (transcripts) mapped to genome. Here is detail of [TFE analysis pipeline](https://github.com/my0916/STRT2) (by Yoshihara M.) and visualization in UCSC.
 
 ## Dependencies
 - [StringTie](https://ccb.jhu.edu/software/stringtie/)
