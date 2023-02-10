@@ -402,7 +402,7 @@ elif [[ ${GENOME_VALUE} = "mm9" ]] && [[ ${ANNO_VALUE} =  wgEncodeGencodeBasic* 
     echo "No Gencode annotations!! Please use RefSeq, KnownGenes, or Ensembl for mm9"
     exit 1
 elif [[ ${GENOME_VALUE} = "bosTau9" ]] && [[ ${ANNO_VALUE} =  wgEncodeGencodeBasic* ]]; then
-    echo "No Gencode annotations!! Please use RefSeq, KnownGenes, or Ensembl for bosTau9"
+    echo "No Gencode annotations!! Please use RefSeq or Ensembl for bosTau9"
     exit 1
 elif [[ ${ANNO_VALUE} =  "ens" ]]; then
     echo "Downloading the Ensembl annotation data..."
