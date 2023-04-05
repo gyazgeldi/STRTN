@@ -240,3 +240,4 @@ This is required for the Picard MergeBamAlignment program. Note that the origina
 mv mouse_reference.dict mouse_reference
 mv mouse_reference.fasta mouse_reference
 ```
+![image](https://user-images.githubusercontent.com/101990822/230011732-1a0464f6-21f7-4c66-8321-5e767661ea20.png)
