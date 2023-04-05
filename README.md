@@ -192,7 +192,7 @@ After running the pipeline above, you can generate fastq files for each sample f
 Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated.
 
 ## How to build HISAT2 index in CSC
-Here is the case for house mouse genome (mm39). The genome indexing step requires big memory and it might not be possible to carry out it on a laptop. Indexes and dictionary was prepared in CSC, see commands at STRTN-Indexes-Dictionary-CSC.sh.
+Here is the case for house mouse genome (mm39). The genome indexing step requires big memory and it might not be possible to carry out it on a laptop. Indexes and dictionary was prepared in CSC, see commands at STRTN-Indexes-Dictionary-CSC.sh. The built indexes can be accessed in https://doi.org/10.5281/zenodo.7457660. 
 ### 1. Create conda environment folder file to install the required packages, install and add the bin directory to the path.
 ```
 mkdir STRTN-env
