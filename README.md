@@ -85,7 +85,7 @@ For general users:
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -c FUGU -r RUNBARCODE -s 8M3S75T6B
+sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM31 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -w /scratch/project_2005262 -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 
 ## Parameters
@@ -104,7 +104,7 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeG
    | Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Default value|Description|
    | :--- | :--- | :--- |
    | `-o, --out` | OUTPUT | Output file name.|
-   | `-a, --annotation` | ref | Gene annotation for QC and counting. <br> Choose from `ref`(RefSeq)/`ens`(Ensembl)/`kg`(UCSC KnownGenes), or directly input the Gencode annotation file name (eg. `wgEncodeGencodeBasicVM30`) for Gencode. <br>Note that some annotations are unavailable in some cases. Please find the details below.
+   | `-a, --annotation` | ref | Gene annotation for QC and counting. <br> Choose from `ref`(RefSeq)/`ens`(Ensembl)/`kg`(UCSC KnownGenes), or directly input the Gencode annotation file name (eg. `wgEncodeGencodeBasicVM31`) for Gencode. <br>Note that some annotations are unavailable in some cases. Please find the details below.
    | `-c, --center ` | CENTER | The name of the sequencing center that produced the reads.<br>Required for the the Picard IlluminaBasecallsToSam program.|
    | `-r, --run` | RUNBARCODE | The barcode of the run. Prefixed to read names.<br>Required for the the Picard IlluminaBasecallsToSam program.|
    | `-s, --structure` | 8M3S75T6B | Read structure.<br>Required for the the Picard IlluminaBasecallsToSam program.<br>Details are described [here](https://software.broadinstitute.org/gatk/documentation/tooldocs/4.0.4.0/picard_illumina_IlluminaBasecallsToSam.php#--READ_STRUCTURE).|
@@ -218,7 +218,7 @@ unpigz -c mm39.fa.gz | ruby -ne '$ok = $_ !~ /^>chrUn_/ if $_ =~ /^>/; puts $_ i
 wget https://www-s.nist.gov/srmors/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
 cat SRM2374_putative_T7_products_NoPolyA_v2.FASTA >> mouse_reference.fasta
 ```
-### 4. Extract splice sites and exons from a GTF file. Here we used wgEncodeGencodeBasicVM30 as the annotation file.
+### 4. Extract splice sites and exons from a GTF file. Here we used wgEncodeGencodeBasicVM31 as the annotation file.
 ```
 wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/database/wgEncodeGencodeBasicVM31.txt.gz
 unpigz -c wgEncodeGencodeBasicVM31.txt.gz | hisat2_extract_splice_sites.py - | grep -v ^chrUn > splice_sites.txt
