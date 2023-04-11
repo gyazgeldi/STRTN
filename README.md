@@ -81,7 +81,7 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {
 ## Example usage
 For general users:
 ```
-./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -c FUGU -r RUNBARCODE -s 8M3S75T6B
+./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM31 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 For CSC users:
 ```
@@ -220,9 +220,9 @@ cat SRM2374_putative_T7_products_NoPolyA_v2.FASTA >> mouse_reference.fasta
 ```
 ### 4. Extract splice sites and exons from a GTF file. Here we used wgEncodeGencodeBasicVM30 as the annotation file.
 ```
-wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/database/wgEncodeGencodeBasicVM30.txt.gz
-unpigz -c wgEncodeGencodeBasicVM30.txt.gz | hisat2_extract_splice_sites.py - | grep -v ^chrUn > splice_sites.txt
-unpigz -c wgEncodeGencodeBasicVM30.txt.gz | hisat2_extract_exons.py - | grep -v ^chrUn > exons.txt
+wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/database/wgEncodeGencodeBasicVM31.txt.gz
+unpigz -c wgEncodeGencodeBasicVM31.txt.gz | hisat2_extract_splice_sites.py - | grep -v ^chrUn > splice_sites.txt
+unpigz -c wgEncodeGencodeBasicVM31.txt.gz | hisat2_extract_exons.py - | grep -v ^chrUn > exons.txt
 ```
 You may additionally perform `hisat2_extract_snps_haplotypes_UCSC.py` to extract SNPs and haplotypes from a dbSNP file for human and mouse.
 ### 5. Build the HISAT2 index.
