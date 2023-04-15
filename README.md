@@ -186,11 +186,6 @@ BigWig files for each strands of each sample.
 - __coding_5end.bb__ <br>
 BigBed file for coding-5'end annotation file.
 
-## fastq-fastQC.sh
-After running the pipeline above, you can generate fastq files for each sample from the output BAM files in the `fastq` directory. These fastq files (without duplicated reads) can be submitted to public sequence databases.<br>
-[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) files are also generated for each fastq file in the `fastqc` directory.<br>
-Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated.
-
 ## How to build HISAT2 index in CSC
 Here is the case for house mouse genome (mm39). The genome indexing step requires big memory and it might not be possible to carry out it on a laptop. Indexes and dictionary was prepared in CSC, see commands at STRTN-Indexes-Dictionary-CSC.sh. The built indexes can be accessed in https://doi.org/10.5281/zenodo.7457660. 
 ### 1. Create conda environment folder file to install the required packages, install and add the bin directory to the path.
@@ -244,3 +239,6 @@ mv mouse_reference.fasta mouse_reference
 - [STRTN-TFE.sh](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-TFE.sh): This script finds only reads within 5'-UTR or proximal upstream of protein-coding and non-coding genes. The details are in [READ.ME file](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-TFE-README.md).
 - [STRTN-UCSC-Allas.sh](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-UCSC-Allas.sh): This script uploads BAM, BigWig, BED files to UCSC-Allas storage service and creates an accessible link to visualize in UCSC genome browser tool. The details are in [READ.ME file](https://github.com/gyazgeldi/STRTN/blob/master/Visualization-in-UCSC-README.md).
 - [STRTN-Seurat.sh](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-Seurat.sh): This script performs scRNA-seq analysis using R-Seurat package and creates PCA, UMAP, violin plots. The details are in [READ.ME file](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-Seurat-README.md).
+- [fastq-fastQC.sh](https://github.com/gyazgeldi/STRTN/blob/master/fastq-fastQC.sh): After running the [main pipeline](https://github.com/gyazgeldi/STRTN/blob/master/STRTN.sh), you can generate fastq files for each sample from the output BAM files in the `fastq` directory. These fastq files (without duplicated reads) can be submitted to public sequence databases.<br>
+[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) files are also generated for each fastq file in the `fastqc` directory.<br>
+Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated.
