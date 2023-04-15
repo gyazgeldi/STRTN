@@ -240,3 +240,7 @@ This is required for the Picard MergeBamAlignment program. Note that the origina
 mv mouse_reference.dict mouse_reference
 mv mouse_reference.fasta mouse_reference
 ```
+## Additional documentation (Other READ.ME files)
+- STRTN-TFE.sh [https://github.com/gyazgeldi/STRTN/blob/master/STRTN-TFE.sh] and READ.ME file [https://github.com/gyazgeldi/STRTN/blob/master/STRTN-TFE-README.md]: This script performs finding only reads within 5'-UTR or proximal upstream of protein-coding and non-coding genes.
+- STRTN-UCSC-Allas.sh [https://github.com/gyazgeldi/STRTN/blob/master/STRTN-UCSC-Allas.sh] and READ.ME file [https://github.com/gyazgeldi/STRTN/blob/master/Visualization-in-UCSC-README.md]: This script uploads BAM, BigWig, BED files to UCSC-Allas storage service and creates an accessible link to visualize in UCSC genome browser tool.
+- STRTN-Seurat.sh [https://github.com/gyazgeldi/STRTN/blob/master/STRTN-Seurat.sh] and READ.ME file [https://github.com/gyazgeldi/STRTN/blob/master/STRTN-Seurat-README.md]: This script performs scRNA-seq analysis using R-Seurat package and creates PCA, UMAP, violin plots. 
