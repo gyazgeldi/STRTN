@@ -10,7 +10,7 @@ NOTE: Sequence data processing, visualization on UCSC and visualization using Se
 https://github.com/gyazgeldi/STRTN.git
 ```
 ## Dependencies
-You can see dependencies for each analysis.
+You can see the dependencies for each analysis.
 
 For `STRTN.sh` ([The main pipeline with visualization](https://github.com/gyazgeldi/STRTN/blob/master/Visualization-in-UCSC-README.md))
 - [Picard](https://broadinstitute.github.io/picard/)
