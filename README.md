@@ -46,7 +46,7 @@ conda activate STRTN-test
 For [CSC](https://www.csc.fi/), these software are available through the `module` command in the scripts (`STRTN-CSC.sh`, `STRTN-Seurat.sh`, `STRTN-UCSC-Allas.sh`, `STRTN-TFE-CSC.sh`, and `fastq-fastqc-CSC.sh` as well as `STRTN-Indexes-Dictionary-CSC.sh`).
 
 ## Requirements
-These requirements are for the main pipeline. For other optional analyses, please visit additional documentation.
+These requirements are for the main pipeline. For other optional analyses, please visit (additional documentation)[https://github.com/gyazgeldi/STRTN#additional-documentation].
 - Illumina BaseCalls files (.bcl). The number of lanes is determined based on the number of directories in the basecalls directory. Here is an example of 4 lanes: 
 ```
   ├── L001
@@ -95,7 +95,7 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeG
 ```
 
 ## Parameters
-These parameters are for the main pipeline. For other optional analyses, please visit additional documentation.
+These parameters are for the main pipeline. For other optional analyses, please visit (additional documentation)[https://github.com/gyazgeldi/STRTN#additional-documentation].
 - __Mandatory__
 
    | Name | Description |
@@ -133,8 +133,7 @@ These parameters are for the main pipeline. For other optional analyses, please 
     | bosTau9 (bovine) | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
  
 ## Outputs
-Outputs are provided in `out` directory. These outputs are obtained from the main pipeline. For other optional analyses, please visit additional documentation.
-Unaligned BAM files generated with Picard IlluminaBasecallsToSam program are found in `tmp/Unaligned_bam`.
+Outputs are provided in `out` directory. These outputs are obtained from the main pipeline. For other optional analyses, please visit (additional documentation)[https://github.com/gyazgeldi/STRTN#additional-documentation]. Unaligned BAM files generated with Picard IlluminaBasecallsToSam program are found in `tmp/Unaligned_bam`.
 
 - __`OUTPUT`-QC.txt__ <br>
 Quality check report for all samples.
