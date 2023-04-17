@@ -213,7 +213,8 @@ fi
 mkdir tmp
 mkdir out
 
-# Preparation for barcodes
+# To correctly separate and analyze sequencing data, preparation of barcodes and creation of parameters file are important.
+# Preparation for barcodes and creating necessary files for demultiplexing sequencing data using barcodes
 ALL_LINES=`cat src/barcode.txt | wc -l`
 NLINES=`expr $ALL_LINES \- 1`
 
@@ -225,14 +226,14 @@ paste tmp/out <(awk 'NR>1{print $1}' src/barcode.txt) | cut -f 1-4 > tmp/out2 &&
 echo -e ${OUTPUT_NAME}_non-indexed_Lane1.bam"\t"${OUTPUT_NAME}_non-indexed_Lane1"\t" ${OUTPUT_NAME}_non-indexed_Lane1"\t"N >> tmp/out2
 echo -e OUTPUT"\t"SAMPLE_ALIAS"\t"LIBRARY_NAME"\t"BARCODE_1  | cat - tmp/out2 > library.param.lane1 && rm tmp/out2
 
-# Number of lanes
+# Determining the number of lanes and creating parameter files for each lane
 nlanes=`ls -l ${BaseCallsDir_PATH} | grep ^d | wc -l`
 for i in `seq 2 $nlanes`
 do
     sed -e "s/Lane1/Lane${i}/g" library.param.lane1 > library.param.lane${i}
 done
 
-# Convert BCL files to BAM files
+# Convert BCL files to BAM files to separate the reads from each sample based on unique barcodes that were added to the samples prior to sequencing.
 for i in `seq 1 $nlanes`
 do
     java -Xmx5g -Djava.io.tmpdir=tmp -jar ${PICARDHOME_PATH}/picard.jar ExtractIlluminaBarcodes \
