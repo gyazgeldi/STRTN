@@ -1,4 +1,4 @@
-# STRTN-NextSeq analysis pipeline
+# STRTN-NextSeq Analysis Pipeline
 
 This is a pipeline for the analysis of STRT-N RNA-sequencing outputs from NextSeq. There are scripts that can be used both on a laptop and on the CSC (IT Center for Science) platform. There are mainly five scripts: STRTN.sh (main pipeline/gene-based analysis), STRTN-TFE.sh (TFE-based analysis), fastq-fastQC.sh, STRTN-UCSC-Allas.sh and STRTN-Seurat.sh. Moreover, there are five scripts for each analysis to run on the CSC platform. This pipeline is based on STRT2 pipeline that is developed by Masahito Yoshihara (Ezer et al., 2021). This is a fork study, therefore you see the scripts of the previous study that start with STRT2 and are able to run in UPPMAX platform as well.
 
