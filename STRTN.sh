@@ -233,7 +233,7 @@ do
     sed -e "s/Lane1/Lane${i}/g" library.param.lane1 > library.param.lane${i}
 done
 
-# Convert BCL files to BAM files to separate the reads from each sample based on unique barcodes that were added to the samples prior to sequencing.
+# Convert BCL files to BAM files to separate the reads from each sample based on unique barcodes 
 for i in `seq 1 $nlanes`
 do
     java -Xmx5g -Djava.io.tmpdir=tmp -jar ${PICARDHOME_PATH}/picard.jar ExtractIlluminaBarcodes \
@@ -329,7 +329,7 @@ mkdir tmp/merged
 mkdir tmp/Unaligned_bam
 mv *.bam tmp/Unaligned_bam
 
-# Merging all lanes
+# Merging all lanes that UMI-annotated BAM files corresponding to each sample derived from four lanes
 for i in `seq 1 $NLINES`
 do
     java -Xmx5g -Djava.io.tmpdir=tmp -jar ${PICARDHOME_PATH}/picard.jar MergeSamFiles \
@@ -343,7 +343,7 @@ done
 
 rm -rf tmp/UMI
 
-# Mark potential PCR duplicates
+# Mark potential PCR duplicates in each of the demultiplexed BAM files created from the merged BAM file, where each file represents a sample with a unique barcode
 mkdir out/MarkDuplicates_Metrics
 for i in `seq 1 $NLINES`
 do
@@ -356,7 +356,7 @@ done
 
 rm -rf tmp/merged
 
-# Preparation for annotation and QC
+# Preparation for annotation, extraction the information on genomic regions from annotation files and quality check
 if [[ ${GENOME_VALUE} = "hg38" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
     echo "No Ensembl gene annotations!! Please use RefSeq, KnownGenes, or Gencode for hg38"
     exit 1
@@ -467,7 +467,7 @@ do
     echo -e $name"\t"$QR"\t"$Total"\t"$Redundancy"\t"$Map"\t"$Rate"\t"$Spike"\t"$spikein_5end_reads"\t"$spikein_5end_rate"\t"$coding_reads"\t"$coding_5end_reads"\t"$coding_5end_rate >> ${OUTPUT_NAME}-QC.txt
 done
 
-# Counting by featureCounts
+# Counting reads align to 5'end of genes with parameters by featureCounts
 featureCounts -T 8 -s 1 --largestOverlap --ignoreDup --primary -a ../src/5end-regions.saf -F SAF -o ${OUTPUT_NAME}_byGene-counts.txt *.bam
 
 mkdir Output_bai && mv *.bam.bai Output_bai
