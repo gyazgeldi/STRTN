@@ -75,6 +75,8 @@ These requirements are for the main pipeline. For other optional analyses, pleas
   - `Example-BarcodesStages` : Sample explanation for data reduction and visualization using PCA, UMAP and violin plots.
 
 ## Usage:
+These usage are for the main pipeline. For other optional analyses, please visit [additional documentation](https://github.com/gyazgeldi/STRTN#additional-documentation).
+
 For general users:
 ```
 ./STRTN.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}    
@@ -85,6 +87,8 @@ sbatch -A project_2005262 ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {
 ```
 
 ## Example usage
+These example usage are for the main pipeline. For other optional analyses, please visit [additional documentation](https://github.com/gyazgeldi/STRTN#additional-documentation).
+
 For general users:
 ```
 ./STRTN.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM31 -b /mnt/c/Users/gamyaz/STRTN-Pipeline/Data/Intensities/BaseCalls -i /mnt/c/Users/gamyaz/STRTN-Pipeline/mouse_index/mouse_reference -w /mnt/c/Users/gamyaz/STRTN-Pipeline -p /mnt/c/Users/gamyaz/Downloads/ENTER/pkgs/picard-2.27.4-hdfd78af_0/share/picard-2.27.4-0 -c FUGU -r RUNBARCODE -s 8M3S75T6B
