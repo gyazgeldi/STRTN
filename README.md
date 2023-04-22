@@ -252,3 +252,7 @@ mv mouse_reference.fasta mouse_reference
 - [STRTN-Seurat.sh](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-Seurat.sh): This script performs scRNA-seq analysis using R-Seurat package and creates PCA, UMAP, violin plots. The details are in [READ.ME file](https://github.com/gyazgeldi/STRTN/blob/master/STRTN-Seurat-README.md).
 - [fastq-fastQC.sh](https://github.com/gyazgeldi/STRTN/blob/master/fastq-fastQC.sh): After running the [main pipeline](https://github.com/gyazgeldi/STRTN/blob/master/STRTN.sh), you can generate fastq files for each sample from the output BAM files in the `fastq` directory. These fastq files (without duplicated reads) can be submitted to public sequence databases.<br>
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) files are also generated for each fastq file in the `fastqc` directory. Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated.
+
+## Flowchart
+![image](https://user-images.githubusercontent.com/101990822/233770065-b217d1c8-f608-47d8-8b5a-619da678a430.png)
+
