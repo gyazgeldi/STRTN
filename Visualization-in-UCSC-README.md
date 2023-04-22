@@ -1,4 +1,4 @@
-# Visualization in UCSC
+# Visualization the results in UCSC
 
 STRT-N library results can be viewed in UCSC-tool ([Lee et al., 2022](https://academic.oup.com/nar/article/50/D1/D1115/6413593?login=false)) using STRTN.sh and STRTN-UCSC-Allas.sh. STRTN.sh pipeline automatically gives BAM files for alignments, BigWig files for read frequency and BigBed file of coding-5'end for annotation items. STRTN-UCSC-Allas.sh automatically gives hub.txt to visualize in UCSC and sharable link with collabrators.
 
