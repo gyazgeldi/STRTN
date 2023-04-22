@@ -46,7 +46,7 @@ conda activate STRTN-test
 For [CSC](https://www.csc.fi/), these software are available through the `module` command in the scripts (`STRTN-CSC.sh`, `STRTN-Seurat.sh`, `STRTN-UCSC-Allas.sh`, `STRTN-TFE-CSC.sh`, and `fastq-fastqc-CSC.sh` as well as `STRTN-Indexes-Dictionary-CSC.sh`).
 
 ## Requirements
-These requirements are for the main pipeline. For other optional analyses, please visit [additional documentation](https://github.com/gyazgeldi/STRTN#additional-documentation).
+These required files are for the main pipeline. For other optional analyses, please visit [additional documentation](https://github.com/gyazgeldi/STRTN#additional-documentation).
 - Illumina BaseCalls files (.bcl). The number of lanes is determined based on the number of directories in the basecalls directory. Here is an example of 4 lanes: 
 ```
   ├── L001
