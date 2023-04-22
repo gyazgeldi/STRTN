@@ -228,7 +228,8 @@ export PATH="${WorkingDir_PATH}/STRTN-env/bin:$PATH"
 mkdir tmp
 mkdir out
 
-# Preparation for barcodes
+# To correctly separate and analyze sequencing data, preparation of barcodes and creation of parameters file are important.
+# Preparation for barcodes and creating necessary files for demultiplexing sequencing data using barcodes
 ALL_LINES=`cat src/barcode.txt | wc -l`
 NLINES=`expr $ALL_LINES \- 1`
 
@@ -240,7 +241,7 @@ paste tmp/out <(awk 'NR>1{print $1}' src/barcode.txt) | cut -f 1-4 > tmp/out2 &&
 echo -e ${OUTPUT_NAME}_non-indexed_Lane1.bam"\t"${OUTPUT_NAME}_non-indexed_Lane1"\t" ${OUTPUT_NAME}_non-indexed_Lane1"\t"N >> tmp/out2
 echo -e OUTPUT"\t"SAMPLE_ALIAS"\t"LIBRARY_NAME"\t"BARCODE_1  | cat - tmp/out2 > library.param.lane1 && rm tmp/out2
 
-# Number of lanes
+# Determining the number of lanes and creating parameter files for each lane
 nlanes=`ls -l ${BaseCallsDir_PATH} | grep ^d | wc -l`
 for i in `seq 2 $nlanes`
 do
@@ -343,7 +344,7 @@ mkdir tmp/merged
 mkdir tmp/Unaligned_bam
 mv *.bam tmp/Unaligned_bam
 
-# Merging all lanes
+# Merging all lanes that UMI-annotated BAM files corresponding to each sample derived from four lanes
 for i in `seq 1 $NLINES`
 do
     java -Xmx5g -Djava.io.tmpdir=tmp -jar /appl/soft/bio/picard/picard-tools-2.27.4/picard.jar MergeSamFiles \
@@ -357,7 +358,7 @@ done
 
 rm -rf tmp/UMI
 
-# Mark potential PCR duplicates
+# Mark potential PCR duplicates in each of the demultiplexed BAM files created from the merged BAM file, where each file represents a sample with a unique barcode
 mkdir out/MarkDuplicates_Metrics
 for i in `seq 1 $NLINES`
 do
@@ -370,7 +371,7 @@ done
 
 rm -rf tmp/merged
 
-# Preparation for annotation and QC
+# Preparation for annotation, extraction the information on genomic regions from annotation files and quality check
 if [[ ${GENOME_VALUE} = "hg38" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
     echo "No Ensembl gene annotations!! Please use RefSeq, KnownGenes, or Gencode for hg38"
     exit 1
@@ -481,7 +482,7 @@ do
     echo -e $name"\t"$QR"\t"$Total"\t"$Redundancy"\t"$Map"\t"$Rate"\t"$Spike"\t"$spikein_5end_reads"\t"$spikein_5end_rate"\t"$coding_reads"\t"$coding_5end_reads"\t"$coding_5end_rate >> ${OUTPUT_NAME}-QC.txt
 done
 
-# Counting by featureCounts
+# Counting reads align to 5'end of genes with parameters by featureCounts
 featureCounts -T 8 -s 1 --largestOverlap --ignoreDup --primary -a ../src/5end-regions.saf -F SAF -o ${OUTPUT_NAME}_byGene-counts.txt *.bam
 
 mkdir Output_bai && mv *.bam.bai Output_bai
