@@ -2,7 +2,7 @@
 
 This is a pipeline for the analysis of STRT-N RNA-sequencing outputs from NextSeq. There are scripts that can be used both on a laptop and on the CSC (IT Center for Science) platform. There are mainly five scripts: STRTN.sh (main pipeline/gene-based analysis), STRTN-TFE.sh (TFE-based analysis), fastq-fastQC.sh, STRTN-UCSC-Allas.sh and STRTN-Seurat.sh. There are also codes that these scripts can run on the CSC platform. This pipeline is based on STRT2 pipeline that is developed by Masahito Yoshihara ([Ezer et al., 2021](https://www.sciencedirect.com/science/article/pii/S2666166721007012?via%3Dihub)). This is a fork study, therefore you see the scripts of the previous study that start with STRT2 and are able to run in UPPMAX platform as well.
 
-NOTE: Sequence data processing, visualization on UCSC and visualization using Seurat require about 150GB, 15GB, 50MB and 150MB of memory depending on genome size and raw data size. The installation of conda packages and pipeline, and running the STRT-N pipeline should be run on Linux terminal.
+NOTE: These requirements are required for this pipeline. Sequence data processing, visualization on UCSC and visualization using Seurat require about 150GB, 15GB, 50MB and 150MB of memory depending on genome size and raw data size. The installation of conda packages and pipeline, and running the STRT-N pipeline should be run on Linux terminal.
 
 
 ## Installation
