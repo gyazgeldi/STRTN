@@ -7,7 +7,7 @@ NOTE: These requirements are required for this pipeline. Sequence data processin
 
 ## Installation
 ```
-https://github.com/gyazgeldi/STRTN.git
+git clone https://github.com/gyazgeldi/STRTN.git
 ```
 ## Dependencies
 You can see the dependencies for each analysis.
