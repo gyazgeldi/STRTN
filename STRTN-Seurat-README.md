@@ -1,6 +1,6 @@
-# Visualization using Seurat
+# Visualization the results using Seurat (R package)
 
-STRT-N library results using Seurat package (v3.0.2) (Butler et al., 2018) can be analysed for data reduction and visualization the expression values and quality check values by STRTN-Seurat.sh.
+STRT-N library results using Seurat package (v3.0.2) ((Butler et al., 2018)[https://www.nature.com/articles/nbt.4096]) can be analysed for data reduction and visualization the expression values and quality check values by STRTN-Seurat.sh.
 
 ## Dependencies
 - [stringr](https://stringr.tidyverse.org/)
