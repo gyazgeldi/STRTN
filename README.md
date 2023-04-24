@@ -221,7 +221,7 @@ You may add the ribosomal DNA repetitive unit for human (U13369) and mouse (BK00
 ```
 wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.gz
 unpigz -c mm39.fa.gz | ruby -ne '$ok = $_ !~ /^>chrUn_/ if $_ =~ /^>/; puts $_ if $ok' > mouse_reference.fasta
-wget https://www-s.nist.gov/srmors/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
+wget https://tsapps.nist.gov/srmext/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
 cat SRM2374_putative_T7_products_NoPolyA_v2.FASTA >> mouse_reference.fasta
 ```
 ### 4. Extract splice sites and exons from a GTF file. Here we used wgEncodeGencodeBasicVM31 as the annotation file.
