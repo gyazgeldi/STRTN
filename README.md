@@ -254,6 +254,7 @@ mv mouse_reference.fasta mouse_reference
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) files are also generated for each fastq file in the `fastqc` directory. Based on the FastQC results, [MultiQC](https://multiqc.info/) report (__MultiQC_report.html__) is generated.
 
 ## Flowchart
-![image](https://user-images.githubusercontent.com/101990822/233973386-caf08843-cdf9-4cc8-b47c-8ba21673c7cf.png)
+![image](https://user-images.githubusercontent.com/101990822/233973695-691d34a6-b990-4569-8f3e-77e8b7748a46.png)
+
 
 
