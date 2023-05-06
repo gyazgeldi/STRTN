@@ -487,7 +487,7 @@ do
 done
 
 # Create spike-ins size file and chromosomal size file
-wget https://www-s.nist.gov/srmors/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
+wget https://tsapps.nist.gov/srmext/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
 seqtk seq -L 5 SRM2374_putative_T7_products_NoPolyA_v2.FASTA > spikeins_size.fasta
 samtools faidx spikeins_size.fasta
 cut -f1-2 spikeins_size.fasta.fai > spikeins_sizes
