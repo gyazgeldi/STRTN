@@ -29,7 +29,7 @@ Transcript far 5'-end (TFE) analysis is developed in [Töhönen et al. 2015](htt
   
 ## Example usage
 ```
-./STRTN-TFE.sh
+./STRTN-TFE.sh  -w /scratch/project_2005262
 ```
 For CSC:
 ```
