@@ -15,7 +15,7 @@ mkdir mouse_index
 wget https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.gz
 unpigz -c mm39.fa.gz | ruby -ne '$ok = $_ !~ /^>chrUn_/ if $_ =~ /^>/; puts $_ if $ok' > mouse_reference.fasta
 
-wget https://www-s.nist.gov/srmors/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
+wget https://tsapps.nist.gov/srmext/certificates/documents/SRM2374_putative_T7_products_NoPolyA_v2.FASTA
 cat SRM2374_putative_T7_products_NoPolyA_v2.FASTA >> mouse_reference.fasta
 
 # Downloading annotation file
