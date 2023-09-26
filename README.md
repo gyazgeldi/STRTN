@@ -4,6 +4,7 @@ This is a pipeline for the analysis of STRT-N RNA-sequencing outputs from NextSe
 
 NOTE: These requirements are required for this pipeline. Sequence data processing, visualization on UCSC and visualization using Seurat require about 150GB, 15GB, 50MB and 150MB of memory depending on genome size and raw data size. The installation of conda packages and pipeline, and running the STRT-N pipeline should be run on Linux terminal.
 
+The related article: Boskovic N, Yazgeldi G, Ezer S, Tervaniemi MH, Inzunza J, Deligiannis SP, Yaşar B, Skoog T, Krjutškov K, Katayama S, Kere J. Optimized single-cell RNA sequencing protocol to study early genome activation in mammalian preimplantation development. STAR Protoc. 2023 Jun 13;4(3):102357. doi: 10.1016/j.xpro.2023.102357. Epub ahead of print. PMID: 37314922; PMCID: PMC10277609.
 
 ## Installation
 ```
