@@ -7,7 +7,7 @@ dependencies :
   - bedtools=2.30.0
   - fastqc=0.11.9
   - hisat2=2.2.1
-  - r-ggbeeswarm=0.7.1
+  - r-ggbeeswarm
   - multiqc=1.13
   - picard=2.18.29
   - r-base=4.2.0
@@ -15,7 +15,7 @@ dependencies :
   - ruby=2.6.6  
   - samtools=1.6
   - seqtk=1.3
-  - r-seurat=3.0.2
+  - r-seurat
   - stringtie=2.1.7
   - subread=2.0.1
   - ucsc-bedgraphtobigwig=377
