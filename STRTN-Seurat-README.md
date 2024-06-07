@@ -34,7 +34,7 @@ For general users:
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRTN-Seurat-CSC.sh -w /scratch/project_2005262
+sbatch -A <project_id> ./STRTN-Seurat-CSC.sh -w /scratch/<project_id>
 ```
 
 ## Parameters
