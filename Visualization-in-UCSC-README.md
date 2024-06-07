@@ -19,13 +19,13 @@ For general users:
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/project_2005262/Data/Intensities/BaseCalls -i /scratch/project_2005262/mouse_index/mouse_reference -c FUGU -r RUNBARCODE -s 8M3S75T6B
+sbatch -A <project_id> ./STRTN-CSC.sh -o STRTN_MOUSE_LIB -g mm39 -a wgEncodeGencodeBasicVM30 -b /scratch/<project_id>/Data/Intensities/BaseCalls -i /scratch/<project_id>/mouse_index/mouse_reference -c FUGU -r RUNBARCODE -s 8M3S75T6B
 ```
 
 ## Example usage of STRTN-UCSC-Allas.sh
 For CSC users:
 ```
-sbatch -A <project_id> ./STRTN-UCSC-Allas.sh -w /scratch/<project_id> -e gamze.yezgeldi@helsinki.fi -n STRTN-hub-mouse
+sbatch -A <project_id> ./STRTN-UCSC-Allas.sh -w /scratch/<project_id> -e <email> -n STRTN-hub-mouse
 ```
 
 ## Parameters for STRTN.sh
