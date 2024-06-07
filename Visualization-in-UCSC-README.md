@@ -96,7 +96,7 @@ Here is an example to store files in CSC-Allas container by STRTN-UCSC-Allas.sh.
 Please make sure that you accessed allas and are able to use swift protocol. 
 ```
 module load allas
-allas-conf <project>
+allas-conf <project_id>
 ```
 ### 2. Create new container for visualization files.
 ```
