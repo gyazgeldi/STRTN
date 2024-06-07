@@ -84,7 +84,7 @@ For general users:
 ```
 For CSC users:
 ```
-sbatch -A project_2005262 ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}   
+sbatch -A <project_id> ./STRTN-CSC.sh -o {OUTPUT_NAME} -g {GENOME_VALUE} -a {ANNO_VALUE} -b {BaseCallsDir_PATH} -i {Index_PATH} -w {WorkingDir_PATH} -c {center_VALUE} -r {run_VALUE} -s {READ_STRUCTURE}   
 ```
 
 ## Example usage
