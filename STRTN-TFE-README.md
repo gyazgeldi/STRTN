@@ -33,7 +33,7 @@ Transcript far 5'-end (TFE) analysis is developed in [Töhönen et al. 2015](htt
 ```
 For CSC:
 ```
-sbatch -A /scratch/project_2005262/ -p core -n 8 -t 24:00:00 ./STRTN-TFE-CSC.sh -w /scratch/project_2005262
+sbatch -A /scratch/<project_id>/ -p core -n 8 -t 24:00:00 ./STRTN-TFE-CSC.sh -w /scratch/<project_id>
 ```
 
 ## Parameters
