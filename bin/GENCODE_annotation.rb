@@ -22,7 +22,7 @@ File.open("src/Gencode.txt", "r")  do |infp|
     File.open("src/anno/NC-exon.bed", "w") do |outfp|
         while line = infp.gets
             cols = line.rstrip.split(/\t/)
-            if cols[5] == cols[6] && cols[5] == cols[7]
+            if cols[4] == cols[6] && cols[4] == cols[7]
                 lefts = cols[9].split(/,/)
                 rights = cols[10].split(/,/)
                 len = lefts.length
@@ -48,7 +48,7 @@ File.open("src/Gencode.txt", "r")  do |infp|
     File.open("src/anno/NC-up.bed", "w") do |outfp|
         while line = infp.gets
             cols = line.rstrip.split(/\t/)
-            if cols[5] == cols[6] && cols[5] == cols[7]
+            if cols[4] == cols[6] && cols[4] == cols[7]
                 lefts = cols[9].split(/,/)
                 rights = cols[10].split(/,/)
                 if cols[3] == '+'
@@ -69,7 +69,7 @@ File.open("src/Gencode.txt", "r")  do |infp|
     File.open("src/anno/NC-1stexon.bed", "w") do |outfp|
         while line = infp.gets
             cols = line.rstrip.split(/\t/)
-            if cols[5] == cols[6] && cols[5] == cols[7]
+            if cols[4] == cols[6] && cols[4] == cols[7]
                 lefts = cols[9].split(/,/)
                 rights = cols[10].split(/,/)
                 if cols[3] == '+'
@@ -88,7 +88,7 @@ File.open("src/Gencode.txt", "r")  do |infp|
     File.open("src/anno/Coding-3UTR.bed", "w") do |outfp|
         while line = infp.gets
             cols = line.rstrip.split(/\t/)
-            if cols[5] != cols[6] && cols[5] != cols[7]
+            if cols[4] != cols[6] && cols[4] != cols[7]
                 lefts = cols[9].split(/,/)
                 rights = cols[10].split(/,/)
                 if cols[3] == '+'
@@ -125,7 +125,7 @@ File.open("src/Gencode.txt", "r")  do |infp|
     File.open("src/anno/Coding-CDS.bed", "w") do |outfp|
         while line = infp.gets
             cols = line.rstrip.split(/\t/)
-            if cols[5] != cols[6] && cols[5] != cols[7]
+            if cols[4] != cols[6] && cols[4] != cols[7]
                 lefts = cols[9].split(/,/)
                 rights = cols[10].split(/,/)
                 cdsleft = cols[6].to_i
@@ -154,7 +154,7 @@ File.open("src/Gencode.txt", "r")  do |infp|
     File.open("src/anno/Coding-up.bed", "w") do |outfp|
         while line = infp.gets
             cols = line.rstrip.split(/\t/)
-            if cols[5] != cols[6] && cols[5] != cols[7]
+            if cols[4] != cols[6] && cols[4] != cols[7]
                 lefts = cols[9].split(/,/)
                 rights = cols[10].split(/,/)
                 if cols[3] == '+'
@@ -175,7 +175,7 @@ File.open("src/Gencode.txt", "r")  do |infp|
     File.open("src/anno/Coding-5UTR.bed", "w") do |outfp|
         while line = infp.gets
             cols = line.rstrip.split(/\t/)
-            if cols[5] != cols[6] && cols[5] != cols[7]
+            if cols[4] != cols[6] && cols[4] != cols[7]
                 lefts = cols[9].split(/,/)
                 rights = cols[10].split(/,/)
                 if cols[3] == '+'
