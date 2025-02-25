@@ -334,7 +334,7 @@ elif [[ ${ANNO_VALUE} =  "ens" ]]; then
   gunzip src/ensGene.txt.gz
   gunzip src/ensemblToGeneName.txt.gz
   join -1 1 -2 2 -t $'\t' <(sort -k 1,1 src/ensemblToGeneName.txt) <(sort -k 2,2 src/ensGene.txt) > src/common.txt
-  join -1 1 -2 2 -t $'\t' -v 2 <(sort -k 1,1 src/ensemblToGeneName.txt) <(sort -k 2,2 src/ensGene.txt) | awk 'BEGIN{OFS="\t"}{print $2,$13,$1,$1=$2="",$0}' | cut -f 1-3,7- > src/no-genename.txt
+  join -1 1 -2 2 -t $'\t' -v 2 <(sort -k 1,1 src/ensemblToGeneName.txt) <(sort -k 2,2 src/ensGene.txt) | awk 'BEGIN{OFS="\t"}{print $1,$13,$2,$1=$2="",$0}' | cut -f 1-3,7- > src/no-genename.txt
   rm src/ensGene.txt && rm src/ensemblToGeneName.txt
   cat src/common.txt src/no-genename.txt > src/ens-genes.txt
   rm src/common.txt && rm src/no-genename.txt
