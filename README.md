@@ -135,6 +135,7 @@ These parameters are for the main pipeline. For other optional analyses, please 
     | mm10 (mouse) | :heavy_check_mark: | NA | :heavy_check_mark: | :heavy_check_mark: |
     | mm39 (mouse) | :heavy_check_mark: | NA | :heavy_check_mark: | :heavy_check_mark: |
     | canFam3 (dog) | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
+    | canFam4 (dog) | :heavy_check_mark: | NA | NA | NA |
     | canFam6 (dog) | :heavy_check_mark: | NA | NA | NA |
     | bosTau9 (bovine) | :heavy_check_mark: | :heavy_check_mark: | NA | NA |
  
