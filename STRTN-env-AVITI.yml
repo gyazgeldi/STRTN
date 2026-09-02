@@ -1,0 +1,25 @@
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies :
+  - fgbio
+  - bedtools
+  - fastqc
+  - hisat2
+  - multiqc
+  - picard
+  - r-base
+  - r-ggbeeswarm
+  - r-ggplot2
+  - ruby
+  - samtools
+  - seqtk
+  - r-seurat
+  - stringtie
+  - subread
+  - ucsc-bedgraphtobigwig
+
+  
+
