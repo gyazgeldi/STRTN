@@ -364,7 +364,7 @@ elif [[ ${GENOME_VALUE} = "mm10" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
     echo "No Ensembl gene annotations!! Please use RefSeq or KnownGenes, or Gencode for mm10"
     exit 1
 elif [[ ${GENOME_VALUE} = "mm39" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
-    echo "No Ensembl gene annotations!! Please use RefSeq or KnownGenes, or Gencode for canFam6"
+    echo "No Ensembl gene annotations!! Please use RefSeq or KnownGenes, or Gencode for mm39"
     exit 1
 elif [[ ${GENOME_VALUE} = "canFam6" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
     echo "No Ensembl gene annotations!! Please use RefSeq or KnownGenes, or Gencode for canFam6"
