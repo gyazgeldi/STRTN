@@ -361,19 +361,25 @@ if [[ ${GENOME_VALUE} = "hg38" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
     echo "No Ensembl gene annotations!! Please use RefSeq, KnownGenes, or Gencode for hg38"
     exit 1
 elif [[ ${GENOME_VALUE} = "mm10" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
-    echo "No Ensembl gene annotations!! Please use RefSeq or KnownGenes, or Gencode for mm10"
+    echo "No Ensembl gene annotations!! Please use RefSeq, KnownGenes, or Gencode for mm10"
     exit 1
 elif [[ ${GENOME_VALUE} = "mm39" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
     echo "No Ensembl gene annotations!! Please use RefSeq or KnownGenes, or Gencode for mm39"
     exit 1
+elif [[ ${GENOME_VALUE} = "canFam4" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
+    echo "No Ensembl gene annotations!! Please use RefSeq for canFam4"
+    exit 1  
 elif [[ ${GENOME_VALUE} = "canFam6" ]] && [[ ${ANNO_VALUE} =  "ens" ]]; then
-    echo "No Ensembl gene annotations!! Please use RefSeq or KnownGenes, or Gencode for canFam6"
+    echo "No Ensembl gene annotations!! Please use RefSeq for canFam6"
     exit 1   
 elif [[ ${GENOME_VALUE} = "canFam3" ]] && [[ ${ANNO_VALUE} =  "kg" ]]; then
     echo "No KnownGenes annotations!! Please use RefSeq or Ensembl for canFam3"
     exit 1
+elif [[ ${GENOME_VALUE} = "canFam4" ]] && [[ ${ANNO_VALUE} =  "kg" ]]; then
+    echo "No KnownGenes annotations!! Please use RefSeq for canFam4"
+    exit 1
 elif [[ ${GENOME_VALUE} = "canFam6" ]] && [[ ${ANNO_VALUE} =  "kg" ]]; then
-    echo "No KnownGenes annotations!! Please use RefSeq or Ensembl for canFam6"
+    echo "No KnownGenes annotations!! Please use RefSeq for canFam6"
     exit 1
 elif [[ ${GENOME_VALUE} = "bosTau9" ]] && [[ ${ANNO_VALUE} =  "kg" ]]; then
     echo "No KnownGenes annotations!! Please use RefSeq or Ensembl for bosTau9"
@@ -381,8 +387,11 @@ elif [[ ${GENOME_VALUE} = "bosTau9" ]] && [[ ${ANNO_VALUE} =  "kg" ]]; then
 elif [[ ${GENOME_VALUE} = "canFam3" ]] && [[ ${ANNO_VALUE} =  wgEncodeGencodeBasic* ]]; then
     echo "No Gencode annotations!! Please use RefSeq or Ensembl for canFam3"
     exit 1
+elif [[ ${GENOME_VALUE} = "canFam4" ]] && [[ ${ANNO_VALUE} =  wgEncodeGencodeBasic* ]]; then
+    echo "No Gencode annotations!! Please use RefSeq for canFam4"
+    exit 1
 elif [[ ${GENOME_VALUE} = "canFam6" ]] && [[ ${ANNO_VALUE} =  wgEncodeGencodeBasic* ]]; then
-    echo "No Gencode annotations!! Please use RefSeq or Ensembl for canFam6"
+    echo "No Gencode annotations!! Please use RefSeq for canFam6"
     exit 1
 elif [[ ${GENOME_VALUE} = "mm9" ]] && [[ ${ANNO_VALUE} =  wgEncodeGencodeBasic* ]]; then
     echo "No Gencode annotations!! Please use RefSeq, KnownGenes, or Ensembl for mm9"
@@ -402,7 +411,6 @@ elif [[ ${ANNO_VALUE} =  "ens" ]]; then
     cat src/common.txt src/no-genename.txt > src/ens-genes.txt
     rm src/common.txt && rm src/no-genename.txt
     ruby bin/ENSEMBL-extract.rb
-    shift 2
 elif [[ ${ANNO_VALUE} =  "kg" ]]; then
     echo "Downloading the UCSC KnownGenes annotation data..."
     curl -o src/knownGene.txt.gz http://hgdownload.cse.ucsc.edu/goldenPath/${GENOME_VALUE}/database/knownGene.txt.gz
@@ -412,19 +420,16 @@ elif [[ ${ANNO_VALUE} =  "kg" ]]; then
     join  -1 1 -2 1 -t $'\t' <(sort -k 1,1 src/kgXref.txt | cut -f 1-5) <(sort -k 1,1 src/knownGene.txt) > src/knowngene-names.txt
     rm src/knownGene.txt && rm src/kgXref.txt
     ruby bin/KnownGenes-extract.rb
-    shift 2
 elif [[ ${ANNO_VALUE} =  "ref" ]]; then
     echo "Downloading the NCBI RefSeq annotation data..."
     curl -o src/refGene.txt.gz http://hgdownload.cse.ucsc.edu/goldenPath/${GENOME_VALUE}/database/refGene.txt.gz
     gunzip src/refGene.txt.gz
     ruby bin/RefSeq-extract.rb
-    shift 2
 elif [[ ${ANNO_VALUE} =  wgEncodeGencodeBasic* ]]; then
     echo "Downloading the Gencode annotation data..."
     curl -o src/Gencode.txt.gz http://hgdownload.cse.ucsc.edu/goldenPath/${GENOME_VALUE}/database/${ANNO_VALUE}.txt.gz
     gunzip src/Gencode.txt.gz
     ruby bin/GENCODE-extract.rb
-    shift 2
 else
     echo "Something is wrong with the annotation data file."
     exit 1
