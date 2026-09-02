@@ -221,6 +221,7 @@ r_PATH=$PATH
 # Loading required tools
 module load tykky
 export PATH="${WorkingDir_PATH}/STRTN-env/bin:$PATH"
+export PATH="${WorkingDir_PATH}/STRTN-env-AVITI/bin:$PATH"
 
 module load bio-apps/v202603
 module load samtools/1.21
