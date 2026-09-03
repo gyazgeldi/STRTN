@@ -1,9 +1,10 @@
 # STRT-N AVITI pipeline 
 
-This is an AVITI-compatible version of STRTN preprocessing pipeline for use on CSC Roihu environment. Unlike the original NextSeq pipeline, this version starts directly from AVITI FASTQ files. The FASTQ files are converted to unmapped BAM file (one unmapped BAM file per library) using 'fgbio' and demultiplexed based on the barcode tag ('BC:'). The pipeline assumes 48 samples per one STRT-N library. The remaining preprocessing steps follow the original STRT-N pipeline. Therefore, 'fgbio' was added to 'STRTN-env-AVITI.yml'.  
+This is an AVITI-compatible version of STRT-N preprocessing pipeline for use on CSC Roihu and local computer (Linux-based) environment. Unlike the original NextSeq pipeline, this version starts directly from AVITI FASTQ files. The FASTQ files are converted to unmapped BAM file (one unmapped BAM file per library) using 'fgbio' and demultiplexed based on the barcode tag ('BC:'). The pipeline assumes 48 samples per one STRT-N library. The remaining preprocessing steps follow the original STRT-N pipeline. Therefore, 'fgbio' was added to 'STRTN-env-AVITI.yml'.  
 
 ## Files:
-- "STRTN-AVITI-Roihu.sh" (main AVITI preprocessing pipeline)
+- "STRTN-AVITI-Roihu.sh" (for use on CSC Roihu environment)
+- "STRTN-AVITI.sh" (for use on local computering environment)
 - "STRTN-env-AVITI.yml" (software environment for the AVITI preprocessing pipeline)
 - "src/barcode.txt" (sample barcodes for demultiplexing) 
 
@@ -16,13 +17,29 @@ Default read structures:
 R1: `8M3S74T`
 I1: `6B`
 
-## Environment setup on Roihu
+## Environment setup 
+### Local computer:
+Creat and activate Conda environment:
+```bash
+conda env create -n STRTN-AVITI -f STRTN-env-AVITI.yml
+conda activate STRTN-AVITI
+```
+Then run: 
+```bash
+STRTN-AVITI.sh
+```
+
+### CSC Roihu:
 Create the environment using Tykky:
 ```bash
 module load tykky
 conda-containerize new --mamba \
     --prefix /projappl/<PROJECT>/STRTN-env-AVITI \
     STRTN-env-AVITI.yml
+```
+Then run: 
+```bash
+STRTN-AVITI-Roihu.sh
 ```
 
 ## Reference genome
@@ -31,9 +48,22 @@ A HISAT2 index built with the corresponding reference genome is required. Please
 The required argument '-i' should contain the path to the HISAT2 index and its basename, without .fasta extension (e.g. /path/to/dog_index/dog_reference).
 
 ## Annotation
-Please check the main STRTN README table for available annotation options.
+Please check -a table in the main README table for available annotation options.
 
 ## Usage
+### Local computer:
+```bash
+STRTN-AVITI.sh \
+    -o {OUTPUT_NAME} \
+    -g {GENOME_VALUE} \
+    -a {ANNO_VALUE} \
+    -R {R1Fastq_PATH} \
+    -B {I1Fastq_PATH} \
+    -i {Index_PATH} \
+    -s "{READ_STRUCTURE}"
+```
+
+### CSC Roihu:
 ```bash
 STRTN-AVITI-Roihu.sh \
     -o {OUTPUT_NAME} \
